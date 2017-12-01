@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo.GameLogic.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,18 @@ using System.Text;
 
 namespace Demo.GameLogic.Systems
 {
+    class ModifierContext
+    {
+        public Entity caster;
+        public Entity owner;
+    }
+
     abstract class IModifierExecutor
     {
         private List<IAbilityCommand> m_Commands = null;
         protected List<IAbilityCommand> commands { get { return m_Commands; } }
+
+        public ModifierContext context { get; set; }
 
         public IModifierExecutor(List<IAbilityCommand> cmds)
         {

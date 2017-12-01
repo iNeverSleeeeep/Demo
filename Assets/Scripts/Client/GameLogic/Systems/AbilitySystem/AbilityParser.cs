@@ -9,9 +9,28 @@ namespace Demo.GameLogic.Systems
     {
         public IAbilityExecutor Parse(DataDrivenAbility data)
         {
-            IAbilityExecutor executor = new AbilityRoot();
+            AbilityRoot root = new AbilityRoot();
+            IAbilityExecutor current = root;
+            if (data.events != null)
+            {
+                foreach (var abilityEvent in data.events)
+                {
+                    var executor = ParseAbilityEvent(abilityEvent);
+                    current.next = executor;
+                    current = executor;
+                }
+            }
 
-            return executor;
+            if (data.modifiers != null)
+            {
+                foreach (var modifier in data.modifiers)
+                {
+                    var executor = ParseAbilityModifier(modifier);
+                    root.modifiers.Add(modifier.name, executor);
+                }
+            }
+            
+            return root;
         }
 
         private IAbilityExecutor ParseAbilityEvent(AbilityEvent abilityEvent)
@@ -21,9 +40,9 @@ namespace Demo.GameLogic.Systems
             return executor;
         }
 
-        private IAbilityExecutor ParseAbilityModifier(AbilityModifier abilityModifier)
+        private IModifierExecutor ParseAbilityModifier(AbilityModifier abilityModifier)
         {
-            IAbilityExecutor executor = null;
+            IModifierExecutor executor = null;
 
             return executor;
         }

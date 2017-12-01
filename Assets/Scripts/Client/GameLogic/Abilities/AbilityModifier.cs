@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
-    class AbilityModifier : ScriptableObject
+    class AbilityModifier
     {
+        public string name;
         public float duration;
         public float thinkInterval;
         public AbilityModifierTrigger trigger;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
-    class AbilityEvent : ScriptableObject
+    class AbilityEvent
     {
         public AbilityEventTrigger trigger;
         public ApplyModifier applyModifier;

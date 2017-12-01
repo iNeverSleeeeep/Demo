@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Demo.GameLogic.Abilities;
+using Demo.GameLogic.Entities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +9,11 @@ namespace Demo.GameLogic.Systems
 {
     class AbilityExecutorContext
     {
+        public float startTime;
+        public Entity caster;
 
+        public Dictionary<string, IModifierExecutor> modifiers;
+        public Dictionary<AbilityEventTrigger, Action<AbilityExecutorContext>> triggers;
     }
 
     abstract class IAbilityExecutor
@@ -16,7 +22,7 @@ namespace Demo.GameLogic.Systems
         private List<IAbilityCommand> m_Commands = null;
 
         protected List<IAbilityCommand> commands { get { return m_Commands; } }
-        protected IAbilityExecutor next { get { return m_Next; } set { m_Next = value; } }
+        public IAbilityExecutor next { get { return m_Next; } set { m_Next = value; } }
 
         public IAbilityExecutor(List<IAbilityCommand> cmds)
         {
@@ -46,14 +52,27 @@ namespace Demo.GameLogic.Systems
         private AbilityExecutorContext m_Context = null;
         private IEnumerator m_ExecuteEnumrator = null;
 
+        public Entity caster
+        {
+            get { return m_Context.caster; }
+            set { m_Context.caster = value; }
+        }
+
+        public Dictionary<string, IModifierExecutor> modifiers
+        {
+            get { return m_Context.modifiers; }
+        }
+
         public AbilityRoot() : base(EmptyList)
         {
             m_Context = new AbilityExecutorContext();
+            m_Context.modifiers = new Dictionary<string, IModifierExecutor>();
         }
 
         public void Execute()
         {
             m_ExecuteEnumrator = Execute(m_Context);
+            m_Context.startTime = Utils.Time.logicTime;
             Game.Instance.coroutineManager.StartLogic(m_ExecuteEnumrator);
         }
 
@@ -95,7 +114,9 @@ namespace Demo.GameLogic.Systems
 
         protected override IEnumerator Execute(AbilityExecutorContext ctx)
         {
-            yield return new WaitForSeconds(m_Time);
+            var deltaTime = Utils.Time.logicTime - ctx.startTime;
+            if (m_Time > deltaTime)
+                yield return new WaitForSeconds(m_Time - deltaTime);
             var commandCtx = new AbilityCommandContext();
             foreach (var cmd in commands)
                 cmd.Execute(commandCtx);
@@ -105,6 +126,35 @@ namespace Demo.GameLogic.Systems
         public override void Kill()
         {
             base.Kill();
+        }
+    }
+
+    class AbilityTirgger : IAbilityExecutor
+    {
+        private AbilityEventTrigger m_TriggerType;
+        private AbilityExecutorContext m_Context;
+
+        public AbilityTirgger(List<IAbilityCommand> cmds, AbilityEventTrigger trigger) : base(cmds)
+        {
+            m_TriggerType = trigger;
+        }
+
+        protected override IEnumerator Execute(AbilityExecutorContext ctx)
+        {
+            
+            yield return base.Execute(ctx);
+        }
+
+        public override IAbilityExecutor Clone()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExecuteImpl()
+        {
+            var commandCtx = new AbilityCommandContext();
+            foreach (var cmd in commands)
+                cmd.Execute(commandCtx);
         }
     }
 }

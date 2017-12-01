@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
-    class DataDrivenAbility : ScriptableObject
+    class DataDrivenAbility
     {
+        public string name;
+
         public int abilityLevel;
         // 技能类型
         public AbilityBehaviour behaviour;
@@ -28,6 +30,6 @@ namespace Demo.GameLogic.Abilities
         public List<AbilityEvent> events;
 
         // Modifier
-        public Dictionary<string, AbilityModifier> modifiers;
+        public List<AbilityModifier> modifiers;
     }
 }

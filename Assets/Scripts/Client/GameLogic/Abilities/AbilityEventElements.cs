@@ -5,7 +5,7 @@ namespace Demo.GameLogic.Abilities
 {
     #region 辅助类 不是Event Element
     // 事件目标
-    class EventTarget : ScriptableObject
+    class EventTarget
     {
         public AbilityUnitTargetTeam team;
         public AbilityUnitTargetType type;
@@ -16,14 +16,14 @@ namespace Demo.GameLogic.Abilities
     #endregion
 
     // 添加buff
-    class ApplyModifier : ScriptableObject
+    class ApplyModifier
     {
         public string modifierName;
         public AbilityTarget target;
     }
 
     // 发射子弹类
-    class TrackingProjectile : ScriptableObject
+    class TrackingProjectile
     {
         public AbilityTarget target;
         public float visionRadius;
@@ -31,14 +31,14 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 伤害
-    class Damage : ScriptableObject
+    class Damage
     {
         public EventTarget target;
         public AbilityUnitDamageType type;
     }
 
     // 位移
-    class ApplyMotionController : ScriptableObject
+    class ApplyMotionController
     {
         public float duration;
         public string script;
@@ -48,7 +48,7 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 脚本
-    class RunScript : ScriptableObject
+    class RunScript
     {
         public string script;
         public string function;
