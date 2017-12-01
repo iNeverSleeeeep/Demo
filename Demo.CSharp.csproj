@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.2f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -238,6 +240,84 @@
     <Compile Include="Assets\3rdParty\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
     <Compile Include="Assets\3rdParty\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
     <Compile Include="Assets\3rdParty\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\AssemblyInfo.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\ByteOrder.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\CloseEventArgs.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\CloseStatusCode.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\CompressionMethod.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\ErrorEventArgs.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Ext.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Fin.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\HttpBase.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\HttpRequest.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\HttpResponse.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\LogData.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Logger.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\LogLevel.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Mask.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\MessageEventArgs.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\AuthenticationBase.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\AuthenticationChallenge.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\AuthenticationResponse.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\AuthenticationSchemes.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\Chunk.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ChunkedRequestStream.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ChunkStream.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ClientSslConfiguration.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\Cookie.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\CookieCollection.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\CookieException.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\EndPointListener.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\EndPointManager.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpBasicIdentity.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpConnection.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpDigestIdentity.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpHeaderInfo.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpHeaderType.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListener.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerAsyncResult.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerContext.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerException.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerPrefix.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerPrefixCollection.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerRequest.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpListenerResponse.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpRequestHeader.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpResponseHeader.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpStatusCode.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpStreamAsyncResult.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpUtility.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\HttpVersion.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\InputChunkState.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\InputState.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\LineState.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\NetworkCredential.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\QueryStringCollection.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ReadBufferState.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\RequestStream.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ResponseStream.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\ServerSslConfiguration.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\WebHeaderCollection.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\WebSockets\HttpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\WebSockets\TcpListenerWebSocketContext.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Net\WebSockets\WebSocketContext.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Opcode.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\PayloadData.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Rsv.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\HttpRequestEventArgs.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\HttpServer.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\IWebSocketSession.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\ServerState.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketBehavior.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketServer.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketServiceHost.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketServiceHost`1.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketServiceManager.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\Server\WebSocketSessionManager.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\WebSocket.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\WebSocketException.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\WebSocketFrame.cs" />
+    <Compile Include="Assets\3rdParty\websocket-sharp\WebSocketState.cs" />
     <Compile Include="Assets\Scripts\Client\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Client\CoroutineManager.cs" />
     <Compile Include="Assets\Scripts\Client\Frame\FrameBuffer.cs" />
@@ -272,9 +352,11 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\LogicTick\ITickable.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\LogicTick\LogicTickManager.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem.cs" />
-    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilitySystemTickLogic.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityCommand.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityExecutor.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityParser.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\ModifierExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\BehaviourTreeSystem.cs" />
-    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\ModifierSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\MovementSystem.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\StandaloneInputHandler.cs" />

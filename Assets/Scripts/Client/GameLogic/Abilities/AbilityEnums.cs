@@ -103,6 +103,12 @@ namespace Demo.GameLogic.Abilities
         OnSpellStart = 1,
 
         /// <summary>
+        /// 时间点
+        /// </summary>
+        [Description("OnSpellStart")]
+        OnTime,
+
+        /// <summary>
         /// 激活开关技能
         /// </summary>
         [Description("OnToggleOn")]

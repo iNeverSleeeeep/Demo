@@ -20,17 +20,10 @@ namespace Demo.GameLogic.Systems
                 var ability = item.Value.ability;
                 if (ability != null)
                 {
-                    if (ability.current != null)
-                        TickOneAbility(ability.current);
-                    else if (ability.abilitiesToCast.Count > 0)
+                    if (ability.abilitiesToCast.Count > 0)
                         CastAbility(ability, ability.abilitiesToCast.Dequeue());
                 }
             }
-        }
-
-        public void TickOneAbility(Ability.AbilityData data)
-        {
-            TickOneAbilityInner(data);
         }
 
         public void CastAbility(Ability ability, string abilityName)
