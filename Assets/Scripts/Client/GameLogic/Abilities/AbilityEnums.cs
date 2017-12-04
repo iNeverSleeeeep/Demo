@@ -109,6 +109,12 @@ namespace Demo.GameLogic.Abilities
         OnTime,
 
         /// <summary>
+        /// 定时
+        /// </summary>
+        [Description("定时")]
+        OnIntervalThink, // 定时
+
+        /// <summary>
         /// 激活开关技能
         /// </summary>
         [Description("OnToggleOn")]
@@ -185,16 +191,6 @@ namespace Demo.GameLogic.Abilities
         /// </summary>
         [Description("OnAbilityPhaseStart")]
         OnAbilityPhaseStart,
-    }
-
-    // 触发条件（Modifier）
-    public enum AbilityModifierTrigger
-    {
-        /// <summary>
-        /// 定时
-        /// </summary>
-        [Description("定时")]
-        OnIntervalThink = 1, // 定时
     }
 
     // 目标

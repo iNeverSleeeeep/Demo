@@ -76,6 +76,16 @@ namespace Demo.GameLogic.Entities
                 return m_CachedModel;
             }
         }
+        Modifier m_CachedModifier = null;
+        public Modifier modifier
+        {
+            get
+            {
+                if (m_CachedModifier == null)
+                    m_CachedModifier = GetComponent<Modifier>();
+                return m_CachedModifier;
+            }
+        }
         Collider m_CachedCollider = null;
         public Collider collider
         {

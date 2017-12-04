@@ -1,50 +1,56 @@
 ﻿using Demo.GameLogic.Abilities;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Demo.GameLogic.Systems
 {
     class AbilityParser
     {
-        public IAbilityExecutor Parse(DataDrivenAbility data)
+        public AbilityRoot Parse(DataDrivenAbility data)
         {
             AbilityRoot root = new AbilityRoot();
-            IAbilityExecutor current = root;
-            if (data.events != null)
-            {
-                foreach (var abilityEvent in data.events)
-                {
-                    var executor = ParseAbilityEvent(abilityEvent);
-                    current.next = executor;
-                    current = executor;
-                }
-            }
+            foreach(var abilityEvent in ParseAbilityEvent(data))
+                root.AddAbilityEvent(abilityEvent);
 
             if (data.modifiers != null)
-            {
                 foreach (var modifier in data.modifiers)
-                {
-                    var executor = ParseAbilityModifier(modifier);
-                    root.modifiers.Add(modifier.name, executor);
-                }
-            }
+                    root.modifiers.Add(modifier.name, ParseAbilityModifier(modifier));
             
             return root;
         }
 
-        private IAbilityExecutor ParseAbilityEvent(AbilityEvent abilityEvent)
+        private List<IAbilityExecutor> ParseAbilityEvent(DataDrivenAbility ability)
         {
-            IAbilityExecutor executor = null;
+            List<IAbilityExecutor> executors = new List<IAbilityExecutor>();
 
-            return executor;
+            if (ability.OnTime != null)
+                foreach (var command in ability.OnTime)
+                    executors.Add(new AbilityTimer(ParseCommands(command), command.startTime));
+
+            if (ability.OnSpellStart != null)
+                foreach (var command in ability.OnSpellStart)
+                    executors.Add(new AbilityTirgger(ParseCommands(command), AbilityEventTrigger.OnSpellStart));
+
+            return executors;
         }
 
-        private IModifierExecutor ParseAbilityModifier(AbilityModifier abilityModifier)
+        private ModifierRoot ParseAbilityModifier(AbilityModifier abilityModifier)
         {
-            IModifierExecutor executor = null;
+            ModifierRoot root = new ModifierRoot(abilityModifier.duration);
 
-            return executor;
+            if (abilityModifier.OnIntervalThink != null)
+                foreach (var command in abilityModifier.OnIntervalThink)
+                    root.AddModifier(new ModifierThinkInterval(ParseCommands(command), command.thinkInterval));
+
+            return root;
+        }
+
+        private List<IAbilityCommand> ParseCommands(EventCommand command)
+        {
+            List<IAbilityCommand> cmds = new List<IAbilityCommand>();
+            if (command.applyModifier != null)
+                cmds.Add(new ApplyModifierCommand(command.applyModifier.modifierName));
+
+            return cmds;
         }
     }
 }

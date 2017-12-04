@@ -35,6 +35,7 @@ namespace Demo.GameLogic.Abilities
     {
         public EventTarget target;
         public AbilityUnitDamageType type;
+        public float value;
     }
 
     // 位移

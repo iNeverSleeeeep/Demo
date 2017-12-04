@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
-    class AbilityEvent
+    class EventCommand
     {
-        public AbilityEventTrigger trigger;
+        public float startTime;
+        public float thinkInterval;
+
         public ApplyModifier applyModifier;
         public TrackingProjectile trackingProjectile;
         public Damage damage;

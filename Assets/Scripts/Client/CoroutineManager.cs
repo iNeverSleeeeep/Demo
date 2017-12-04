@@ -70,5 +70,27 @@ namespace Demo
 
         #endregion
     }
+
+    class WaitForLogicSeconds : CustomYieldInstruction
+    {
+        private float m_Time;
+        private float m_Current;
+
+        public WaitForLogicSeconds(float time)
+        {
+            m_Current = 0;
+            m_Time = time;
+        }
+
+        public override bool keepWaiting
+        {
+            get
+            {
+                m_Current += Utils.Time.logicDeltaTime;
+                return m_Current > m_Time;
+            }
+        }
+    }
 }
+
 

@@ -27,7 +27,21 @@ namespace Demo.GameLogic.Abilities
         public float manaCost;
 
         // 技能事件
-        public List<AbilityEvent> events;
+        public EventCommand[] OnSpellStart;
+        public EventCommand[] OnTime;
+        public EventCommand[] OnToggleOn;
+        public EventCommand[] OnToggleOff;
+        public EventCommand[] OnChannelFinish;
+        public EventCommand[] OnChannelInterrupted;
+        public EventCommand[] OnChannelSucceeded;
+        public EventCommand[] OnOwnerDied;
+        public EventCommand[] OnOwnerSpawned;
+        public EventCommand[] OnProjectileHitUnit;
+        public EventCommand[] OnProjectileFinish;
+        public EventCommand[] OnEquip;
+        public EventCommand[] OnUnequip;
+        public EventCommand[] OnUpgrade;
+        public EventCommand[] OnAbilityPhaseStart;
 
         // Modifier
         public List<AbilityModifier> modifiers;

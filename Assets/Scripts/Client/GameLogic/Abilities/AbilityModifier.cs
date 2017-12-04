@@ -8,10 +8,8 @@ namespace Demo.GameLogic.Abilities
     {
         public string name;
         public float duration;
-        public float thinkInterval;
-        public AbilityModifierTrigger trigger;
 
-        public List<AbilityEvent> events;
+        public EventCommand[] OnIntervalThink;
     }
 }
 
