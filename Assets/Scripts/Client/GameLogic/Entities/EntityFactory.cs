@@ -27,6 +27,8 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Movement(entity));
                     entity.AddComponent(new Property(entity));
                     entity.AddComponent(new PlayerModel(entity));
+                    entity.AddComponent(new Ability(entity));
+                    entity.AddComponent(new Modifier(entity));
                     break;
                 case EntityType.Computer:
                     entity.AddComponent(new Position(entity));
@@ -34,6 +36,8 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Property(entity));
                     entity.AddComponent(new Brain(entity));
                     entity.AddComponent(new PlayerModel(entity));
+                    entity.AddComponent(new Ability(entity));
+                    entity.AddComponent(new Modifier(entity));
                     break;
             }
             

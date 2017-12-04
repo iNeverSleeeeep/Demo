@@ -46,6 +46,20 @@ namespace Demo.Input
                 };
                 m_FrameData.Add(data);
             }
+
+            //Debug.Log("UnityEngine.Input.GetKeyDown(KeyCode.Z)="+ UnityEngine.Input.GetKeyDown(KeyCode.Z));
+            //Debug.Log("UnityEngine.Input.GetKey(KeyCode.Z)=" + UnityEngine.Input.GetKey(KeyCode.Z));
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
+            {
+                var data = new FrameData.EntityData()
+                {
+                    id = Game.Instance.inputManager.entity,
+                    type = FrameData.OperationType.Ability,
+                    abilityName = "TestAbility"
+                };
+                m_FrameData.Add(data);
+                Debug.Log("?????????????????????");
+            }
         }
     }
 }

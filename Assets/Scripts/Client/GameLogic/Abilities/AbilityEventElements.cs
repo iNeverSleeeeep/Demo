@@ -19,13 +19,13 @@ namespace Demo.GameLogic.Abilities
     class ApplyModifier
     {
         public string modifierName;
-        public AbilityTarget target;
+        public EventTarget target;
     }
 
     // 发射子弹类
     class TrackingProjectile
     {
-        public AbilityTarget target;
+        public EventTarget target;
         public float visionRadius;
         public float moveSpeed;
     }

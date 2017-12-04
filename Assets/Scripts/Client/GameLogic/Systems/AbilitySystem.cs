@@ -5,12 +5,34 @@ using System.Text;
 using Demo.GameLogic.Componnets;
 using Demo.GameLogic.Abilities;
 using Demo.GameLogic.Events;
+using UnityEngine;
+using Demo.GameLogic.Entities;
 
 namespace Demo.GameLogic.Systems
 {
     partial class AbilitySystem : ITickable
     {
-        private Dictionary<string, DataDrivenAbility> m_CachedAbilities = null;
+        private Dictionary<string, AbilityRoot> m_CachedAbilities = null;
+        private AbilityParser m_AbilityParse = null;
+
+        public AbilitySystem()
+        {
+            m_CachedAbilities = new Dictionary<string, AbilityRoot>();
+            m_AbilityParse = new AbilityParser();
+        }
+
+        public void AddAbility(string path)
+        {
+            Game.Instance.resourceLoader.Load<TextAsset>(path, asset=>
+            {
+                var ability = JsonUtility.FromJson<DataDrivenAbility>(asset.text);
+                if (m_CachedAbilities.ContainsKey(ability.name) == false)
+                {
+                    var root = m_AbilityParse.Parse(ability);
+                    m_CachedAbilities.Add(ability.name, root);
+                }
+            });
+        }
 
         public void Tick()
         {

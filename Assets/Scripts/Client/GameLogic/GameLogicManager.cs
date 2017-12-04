@@ -10,6 +10,8 @@ namespace Demo.GameLogic
     sealed class GameLogicManager
     {
         LogicTickManager m_LogicTickManager = null;
+        AbilitySystem m_AbilitySystem = null;
+        public AbilitySystem abilitySystem { get { return m_AbilitySystem; } }
         EntityManager m_EntityManager = null;
         public EntityManager entityManager { get { return m_EntityManager; } }
 
@@ -38,6 +40,13 @@ namespace Demo.GameLogic
                         movement.angle = float.NaN;
                     }
                 }
+                else if (entityData.type == FrameData.OperationType.Ability)
+                {
+                    Debug.Log("entityData.type == FrameData.OperationType.Ability");
+                    var ability = entity.ability;
+                    if (ability != null)
+                        ability.abilitiesToCast.Enqueue(entityData.abilityName);
+                }
             }
         }
 
@@ -53,6 +62,10 @@ namespace Demo.GameLogic
 
             var btSystem = new BehaviourTreeSystem();
             m_LogicTickManager.AddTickable(btSystem);
+
+            m_AbilitySystem = new AbilitySystem();
+            m_LogicTickManager.AddTickable(m_AbilitySystem);
+
             Game.Instance.frameDataCollector.AddProvider(btSystem);
 
             m_EntityManager = new EntityManager();

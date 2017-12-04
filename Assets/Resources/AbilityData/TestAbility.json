@@ -1,0 +1,51 @@
+﻿{
+	"name" : "TestAbility",
+	
+	"behaviour" : { "UnitTarget" : true },
+	
+	"targetTeam" : 2,
+	
+	"castRange" : 1,
+	
+	"cooldown" : 3,
+	
+	"manaCost" : 10,
+	
+	"OnTime" : 
+	[
+		{
+			"startTime" : 0.5,
+			"damage" : 
+			{
+				"target" : { "center" : 1 },
+				"value" : 10,
+				"type" : 2
+			},
+			"applyModifier" : 
+			{
+				"target" : {"center":1},
+				"modifierName" : "DamageBuff"
+			}
+		}
+	],
+	
+	"modifiers" : 
+	[
+		{
+			"name" : "DamageBuff",
+			"duration" : 5,
+			
+			"OnIntervalThink" : 
+			[
+				{
+					"damage" : 
+					{
+						"target" : { "center" : 1 },
+						"value" : 10,
+						"type" : 2
+					}
+				}
+			]
+		}
+	]
+}

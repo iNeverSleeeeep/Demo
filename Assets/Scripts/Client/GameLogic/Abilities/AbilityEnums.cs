@@ -10,25 +10,25 @@ namespace Demo.GameLogic.Abilities
         /// 全部
         /// </summary>
         [Description("全部")]
-        Both = 1 << 0,  //  全部
+        Both = 1,  //  全部
 
         /// <summary>
         /// 敌人
         /// </summary>
         [Description("敌人")]
-        Enemy = 1 << 1,    //  敌人
+        Enemy,    //  敌人
 
         /// <summary>
         /// 友军
         /// </summary>
         [Description("友军")]
-        Friendly = 1 << 2, //  友军
+        Friendly, //  友军
 
         /// <summary>
         /// ?
         /// </summary>
         [Description("Custom")]
-        Custom = 1 << 3,   //	?
+        Custom,   //	?
     }
 
     // 伤害类型
@@ -38,31 +38,31 @@ namespace Demo.GameLogic.Abilities
         /// 魔法伤害
         /// </summary>
         [Description("魔法伤害")]
-        Magical = 1 << 0,
+        Magical = 1,
 
         /// <summary>
         /// 物理伤害
         /// </summary>
         [Description("物理伤害")]
-        Physical = 1 << 1,
+        Physical,
 
         /// <summary>
         /// 纯粹伤害
         /// </summary>
         [Description("纯粹伤害")]
-        Pure = 1 << 2,
+        Pure,
 
         /// <summary>
         /// 已经移除  复合伤害
         /// </summary>
         [Description("复合伤害")]
-        Composite = 1 << 3,
+        Composite,
 
         /// <summary>
         /// 已经移除 生命移除
         /// </summary>
         [Description("生命移除")]
-        HpRemove = 1 << 4,
+        HpRemove,
     }
 
     // 技能类型

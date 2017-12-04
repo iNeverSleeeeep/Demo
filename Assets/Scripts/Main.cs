@@ -12,5 +12,10 @@ public class Main : MonoBehaviour
     private void Update()
     {
         Game.Instance.Update();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+
+        }
     }
 }

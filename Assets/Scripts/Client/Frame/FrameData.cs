@@ -11,7 +11,7 @@ namespace Demo.Frame
             Invalid,
             Moveing,
             EndMove,
-            Skill
+            Ability
         }
 
         public struct EntityData
@@ -21,6 +21,8 @@ namespace Demo.Frame
 
             // type == OperationType.Moveing
             public float angle;
+            // type == OperationType Ability
+            public string abilityName;
 
 #if UNITY_EDITOR
             private static System.Text.StringBuilder toStringBuilder = new System.Text.StringBuilder(); 
