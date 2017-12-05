@@ -42,10 +42,9 @@ namespace Demo.GameLogic
                 }
                 else if (entityData.type == FrameData.OperationType.Ability)
                 {
-                    Debug.Log("entityData.type == FrameData.OperationType.Ability");
                     var ability = entity.ability;
                     if (ability != null)
-                        ability.abilitiesToCast.Enqueue(entityData.abilityName);
+                        ability.abilityToCast = entityData.abilityName;
                 }
             }
         }

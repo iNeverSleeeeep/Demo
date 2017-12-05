@@ -15,6 +15,7 @@ namespace Demo.GameLogic.Entities
         {
             Player,
             Computer,
+            Bullet,
         }
 
         public static Entity CreateEntity(EntityType type)
@@ -29,6 +30,7 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new PlayerModel(entity));
                     entity.AddComponent(new Ability(entity));
                     entity.AddComponent(new Modifier(entity));
+                    entity.AddComponent(new Collider(entity));
                     break;
                 case EntityType.Computer:
                     entity.AddComponent(new Position(entity));
@@ -38,6 +40,13 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new PlayerModel(entity));
                     entity.AddComponent(new Ability(entity));
                     entity.AddComponent(new Modifier(entity));
+                    entity.AddComponent(new Collider(entity));
+                    break;
+                case EntityType.Bullet:
+                    entity.AddComponent(new Position(entity));
+                    entity.AddComponent(new Movement(entity));
+                    entity.AddComponent(new Model(entity));
+                    entity.AddComponent(new Collider(entity));
                     break;
             }
             

@@ -9,22 +9,22 @@ namespace Demo.Input
 
         public override void Tick()
         {
-            var w = UnityEngine.Input.GetKey(KeyCode.W);
-            var s = UnityEngine.Input.GetKey(KeyCode.S);
-            var a = UnityEngine.Input.GetKey(KeyCode.A);
-            var d = UnityEngine.Input.GetKey(KeyCode.D);
+            var up = UnityEngine.Input.GetKey(KeyCode.UpArrow);
+            var down = UnityEngine.Input.GetKey(KeyCode.DownArrow);
+            var left = UnityEngine.Input.GetKey(KeyCode.LeftArrow);
+            var right = UnityEngine.Input.GetKey(KeyCode.RightArrow);
 
             float angle = float.NaN;
-            if (w && d) angle = 45; // ↗
-            else if (w && a) angle = 315; // ↖
-            else if (w && s) { }
-            else if (d && s) angle = 135; // ↘
-            else if (d && a) { }
-            else if (s && a) angle = 225; // ↙
-            else if (w) angle = 0; // ↑
-            else if (d) angle = 90; // →
-            else if (s) angle = 180; // ↓
-            else if (a) angle = 270; // ←
+            if (up && right) angle = 45; // ↗
+            else if (up && left) angle = 315; // ↖
+            else if (up && down) { }
+            else if (right && down) angle = 135; // ↘
+            else if (right && left) { }
+            else if (down && left) angle = 225; // ↙
+            else if (up) angle = 0; // ↑
+            else if (right) angle = 90; // →
+            else if (down) angle = 180; // ↓
+            else if (left) angle = 270; // ←
             else { }
             if (float.IsNaN(angle) == false)
             {
@@ -47,8 +47,6 @@ namespace Demo.Input
                 m_FrameData.Add(data);
             }
 
-            //Debug.Log("UnityEngine.Input.GetKeyDown(KeyCode.Z)="+ UnityEngine.Input.GetKeyDown(KeyCode.Z));
-            //Debug.Log("UnityEngine.Input.GetKey(KeyCode.Z)=" + UnityEngine.Input.GetKey(KeyCode.Z));
             if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
             {
                 var data = new FrameData.EntityData()
@@ -58,7 +56,6 @@ namespace Demo.Input
                     abilityName = "TestAbility"
                 };
                 m_FrameData.Add(data);
-                Debug.Log("?????????????????????");
             }
         }
     }

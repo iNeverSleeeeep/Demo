@@ -40,21 +40,29 @@ namespace Demo.GameLogic.Systems
             foreach (var item in entities)
             {
                 var ability = item.Value.ability;
-                if (ability != null)
+                if (ability != null && ability.current != null)
                 {
-                    if (ability.abilitiesToCast.Count > 0)
-                        CastAbility(ability, ability.abilitiesToCast.Dequeue());
+                    if (ability.abilityToCast != null)
+                    {
+                        CastAbility(ability, ability.abilityToCast);
+                        ability.abilityToCast = null;
+                    }
                 }
             }
         }
 
         public void CastAbility(Ability ability, string abilityName)
         {
+            if (m_CachedAbilities.ContainsKey(abilityName) == false)
+                return;
             var abilityData = new Ability.AbilityData()
             {
                 name = abilityName,
+                startTime = Utils.Time.logicTime,
+                root = m_CachedAbilities[abilityName].Clone() as AbilityRoot
             };
             ability.current = abilityData;
+            ability.current.root.Execute();
             LogicEvent.RaiseEvent(LogicEventType.CastAbility, ability.entity);
         }
     }

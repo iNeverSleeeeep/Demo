@@ -3,6 +3,7 @@ using UnityEditor;
 using Demo.GameLogic.Entities;
 using Demo.GameLogic.Abilities;
 using System.Collections.Generic;
+using Demo.GameLogic.Systems;
 
 namespace Demo.GameLogic.Componnets
 {
@@ -13,7 +14,7 @@ namespace Demo.GameLogic.Componnets
         public List<string> passive = null;
         public string ultimate = null;
 
-        public Queue<string> abilitiesToCast = null;
+        public string abilityToCast = null;
 
         public AbilityData current = null;
 
@@ -21,7 +22,6 @@ namespace Demo.GameLogic.Componnets
         {
             abilities = new List<string>();
             passive = new List<string>();
-            abilitiesToCast = new Queue<string>();
         }
 
         public class AbilityData
@@ -29,6 +29,8 @@ namespace Demo.GameLogic.Componnets
             public string name = null;
 
             public float startTime = 0f;
+
+            public AbilityRoot root = null;
         }
     }
 }

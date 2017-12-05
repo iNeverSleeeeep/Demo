@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.2f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -370,6 +372,8 @@
     <Compile Include="Assets\Scripts\Client\Level\WarlockWarsLike\WarlockWarsLevelLoader.cs" />
     <Compile Include="Assets\Scripts\Client\Net\Connection.cs" />
     <Compile Include="Assets\Scripts\Client\Resource\ResourceLoader.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\BasePanel.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\CastSkillPanel.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Random.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\String.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Time.cs" />
