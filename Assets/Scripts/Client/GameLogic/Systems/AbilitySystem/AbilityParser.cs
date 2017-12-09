@@ -8,7 +8,8 @@ namespace Demo.GameLogic.Systems
         public AbilityRoot Parse(DataDrivenAbility data)
         {
             AbilityRoot root = new AbilityRoot();
-            foreach(var abilityEvent in ParseAbilityEvent(data))
+
+            foreach (var abilityEvent in ParseAbilityEvent(data))
                 root.AddAbilityEvent(abilityEvent);
 
             if (data.modifiers != null)
@@ -16,6 +17,17 @@ namespace Demo.GameLogic.Systems
                     root.modifiers.Add(modifier.name, ParseAbilityModifier(modifier));
             
             return root;
+        }
+
+        public AbilityCondition ParseCondition(DataDrivenAbility ability)
+        {
+            var condition = new AbilityCondition()
+            {
+                castRange = ability.castRange,
+                manaCost = ability.manaCost
+            };
+          
+            return condition;
         }
 
         private List<IAbilityExecutor> ParseAbilityEvent(DataDrivenAbility ability)

@@ -46,17 +46,6 @@ namespace Demo.Input
                 };
                 m_FrameData.Add(data);
             }
-
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
-            {
-                var data = new FrameData.EntityData()
-                {
-                    id = Game.Instance.inputManager.entity,
-                    type = FrameData.OperationType.Ability,
-                    abilityName = "TestAbility"
-                };
-                m_FrameData.Add(data);
-            }
         }
     }
 }

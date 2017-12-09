@@ -23,6 +23,7 @@ namespace Demo.Level
             entity.model.name = "player";
             entity.model.material.color = Color.blue;
             entity.ability.attack = "TestAbility";
+            entity.clickable.clickCallback = Game.Instance.inputManager.inputHandler.OnEntityClick;
 
             // computer
             for (var i = 0; i < 5; ++i)
@@ -37,6 +38,7 @@ namespace Demo.Level
                     component.enabled = true;
                 computer.model.name = "computer " + i.ToString();
                 computer.model.position = computer.position.position;
+                computer.clickable.clickCallback = Game.Instance.inputManager.inputHandler.OnEntityClick;
             }
         }
     }

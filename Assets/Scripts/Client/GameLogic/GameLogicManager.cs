@@ -30,6 +30,12 @@ namespace Demo.GameLogic
                         movement.speed = movement.defaultSpeed;
                         movement.angle = entityData.angle;
                     }
+                    var ability = entity.ability;
+                    if (ability != null && ability.abilityToCast != null)
+                    {
+                        ability.abilityToCast = null;
+                        ability.target = 0;
+                    }
                 }
                 else if (entityData.type == FrameData.OperationType.EndMove)
                 {
@@ -44,7 +50,10 @@ namespace Demo.GameLogic
                 {
                     var ability = entity.ability;
                     if (ability != null)
+                    {
                         ability.abilityToCast = entityData.abilityName;
+                        ability.target = entityData.target;
+                    }
                 }
             }
         }

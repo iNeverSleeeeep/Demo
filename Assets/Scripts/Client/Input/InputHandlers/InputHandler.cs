@@ -1,6 +1,9 @@
 ﻿
 using Demo.Frame;
+using Demo.GameLogic.Entities;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Demo.Input
 {
@@ -11,6 +14,22 @@ namespace Demo.Input
         public InputHandler()
         {
             m_FrameData = new List<FrameData.EntityData>();
+        }
+        
+        public void OnEntityClick(PointerEventData eventData, object userData)
+        {
+            var target = userData as Entity;
+            if (target.id == Game.Instance.inputManager.entity)
+                return;
+
+            var data = new FrameData.EntityData()
+            {
+                id = Game.Instance.inputManager.entity,
+                type = FrameData.OperationType.Ability,
+                abilityName = "TestAbility",
+                target = target.id
+            };
+            m_FrameData.Add(data);
         }
 
         public abstract void Tick();

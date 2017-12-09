@@ -23,6 +23,7 @@ namespace Demo.Frame
             public float angle;
             // type == OperationType Ability
             public string abilityName;
+            public int target;
 
 #if UNITY_EDITOR
             private static System.Text.StringBuilder toStringBuilder = new System.Text.StringBuilder(); 

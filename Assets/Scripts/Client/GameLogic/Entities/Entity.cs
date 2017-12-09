@@ -76,6 +76,16 @@ namespace Demo.GameLogic.Entities
                 return m_CachedModel;
             }
         }
+        Clickable m_CachedClickable = null;
+        public Clickable clickable
+        {
+            get
+            {
+                if (m_CachedClickable == null)
+                    m_CachedClickable = GetComponent<Clickable>();
+                return m_CachedClickable;
+            }
+        }
         Modifier m_CachedModifier = null;
         public Modifier modifier
         {

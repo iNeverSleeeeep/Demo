@@ -476,6 +476,7 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Abilities\DataDrivenAbility.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Ability.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Brain.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Components\Clickable.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Collider.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Component.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Model.cs" />
@@ -494,12 +495,14 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\LogicTick\LogicTickManager.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityCommand.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityCondition.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityHelper.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityParser.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\ModifierExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\BehaviourTreeSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\MovementSystem.cs" />
+    <Compile Include="Assets\Scripts\Client\Input\ClickableBehaviour.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\StandaloneInputHandler.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputManager.cs" />
@@ -513,6 +516,8 @@
     <Compile Include="Assets\Scripts\Client\Level\WarlockWarsLike\WarlockWarsLevelLoader.cs" />
     <Compile Include="Assets\Scripts\Client\Net\Connection.cs" />
     <Compile Include="Assets\Scripts\Client\Resource\ResourceLoader.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\BasePanel.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\CastSkillPanel.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Random.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\String.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Time.cs" />

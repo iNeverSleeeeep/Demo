@@ -30,16 +30,29 @@ namespace Demo.GameLogic.Systems
                     var distance = offset.magnitude;
                     if (distance < 5)
                     {
-                        var angle = Vector3.Angle(offset, Vector3.forward);
-                        if (Vector3.Cross(offset, Vector3.forward).y > 0)
-                            angle = 360 - angle;
-                        var entityData = new FrameData.EntityData()
+                        if (distance > 1)
                         {
-                            id = entity.id,
-                            type = FrameData.OperationType.Moveing,
-                            angle = angle
-                        };
-                        m_EntityData.Add(entityData);
+                            var angle = Vector3.Angle(offset, Vector3.forward);
+                            if (Vector3.Cross(offset, Vector3.forward).y > 0)
+                                angle = 360 - angle;
+                            var entityData = new FrameData.EntityData()
+                            {
+                                id = entity.id,
+                                type = FrameData.OperationType.Moveing,
+                                angle = angle
+                            };
+                            m_EntityData.Add(entityData);
+                        }
+                        else if (entity.movement.speed > 0)
+                        {
+                            var entityData = new FrameData.EntityData()
+                            {
+                                id = entity.id,
+                                type = FrameData.OperationType.EndMove,
+                                angle = float.NaN
+                            };
+                            m_EntityData.Add(entityData);
+                        }
                     }
                     else if (entity.movement.speed > 0)
                     {

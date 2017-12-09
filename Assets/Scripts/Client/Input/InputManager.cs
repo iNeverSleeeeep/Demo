@@ -10,6 +10,7 @@ namespace Demo.Input
         public int entity { get { return m_Entity; } set { m_Entity = value; } }
 
         InputHandler m_InputHandler = null;
+        public InputHandler inputHandler { get { return m_InputHandler; } }
 
         public InputManager()
         {

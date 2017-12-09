@@ -31,6 +31,7 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Ability(entity));
                     entity.AddComponent(new Modifier(entity));
                     entity.AddComponent(new Collider(entity));
+                    entity.AddComponent(new Clickable(entity));
                     break;
                 case EntityType.Computer:
                     entity.AddComponent(new Position(entity));
@@ -41,6 +42,7 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Ability(entity));
                     entity.AddComponent(new Modifier(entity));
                     entity.AddComponent(new Collider(entity));
+                    entity.AddComponent(new Clickable(entity));
                     break;
                 case EntityType.Bullet:
                     entity.AddComponent(new Position(entity));

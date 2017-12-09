@@ -9,14 +9,15 @@ namespace Demo.GameLogic.Componnets
 {
     class Ability : Component
     {
-        public string attack = null;
-        public List<string> abilities = null;
-        public List<string> passive = null;
-        public string ultimate = null;
+        public string attack;
+        public List<string> abilities;
+        public List<string> passive;
+        public string ultimate;
 
-        public string abilityToCast = null;
+        public string abilityToCast;
+        public int target;
 
-        public AbilityData current = null;
+        public AbilityData current;
 
         public Ability(Entity entity) : base(entity)
         {
