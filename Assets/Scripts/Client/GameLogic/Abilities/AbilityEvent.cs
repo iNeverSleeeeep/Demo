@@ -1,8 +1,10 @@
 ﻿
+using System;
 using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
+    [Serializable]
     class EventCommand
     {
         public float startTime;

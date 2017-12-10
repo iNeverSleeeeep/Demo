@@ -1,10 +1,12 @@
 ﻿
+using System;
 using UnityEngine;
 
 namespace Demo.GameLogic.Abilities
 {
     #region 辅助类 不是Event Element
     // 事件目标
+    [Serializable]
     class EventTarget
     {
         public AbilityUnitTargetTeam team;
@@ -16,6 +18,7 @@ namespace Demo.GameLogic.Abilities
     #endregion
 
     // 添加buff
+    [Serializable]
     class ApplyModifier
     {
         public string modifierName;
@@ -23,6 +26,7 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 发射子弹类
+    [Serializable]
     class TrackingProjectile
     {
         public EventTarget target;
@@ -31,6 +35,7 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 伤害
+    [Serializable]
     class Damage
     {
         public EventTarget target;
@@ -39,6 +44,7 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 位移
+    [Serializable]
     class ApplyMotionController
     {
         public float duration;
@@ -49,6 +55,7 @@ namespace Demo.GameLogic.Abilities
     }
 
     // 脚本
+    [Serializable]
     class RunScript
     {
         public string script;

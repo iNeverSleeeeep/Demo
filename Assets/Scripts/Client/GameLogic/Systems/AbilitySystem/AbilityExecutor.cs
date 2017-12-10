@@ -1,16 +1,35 @@
 ﻿using Demo.GameLogic.Abilities;
-using Demo.GameLogic.Entities;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Demo.GameLogic.Systems
 {
+    struct AbilityTarget
+    {
+        public int entity;
+        public Vector3 point;
+
+        public AbilityTarget(int entity)
+        {
+            this.entity = entity;
+            point = default(Vector3);
+        }
+
+        public AbilityTarget(Vector3 point)
+        {
+            this.point = point;
+            entity = 0;
+        }
+    }
+
     class AbilityContext
     {
         public float startTime;
         public int caster;
+
+        public AbilityTarget target;
+        public int[] targets;
 
         public Dictionary<string, ModifierRoot> modifiers;
         public Dictionary<AbilityEventTrigger, TriggerEvent> triggers;
@@ -39,6 +58,9 @@ namespace Demo.GameLogic.Systems
         protected void ExecuteCommands(AbilityContext ctx)
         {
             var cmdCtx = new AbilityCommandContext();
+            cmdCtx.caster = ctx.caster;
+            cmdCtx.targets = ctx.targets;
+            cmdCtx.modifiers = ctx.modifiers;
             if (commands != null)
             {
                 foreach (var cmd in commands)
@@ -65,6 +87,12 @@ namespace Demo.GameLogic.Systems
             get { return m_Context.modifiers; }
         }
 
+        public AbilityTarget target
+        {
+            get { return m_Context.target; }
+            set { m_Context.target = value; }
+        }
+
         public AbilityRoot() : base(EmptyList)
         {
             m_Context = new AbilityContext();
@@ -80,6 +108,8 @@ namespace Demo.GameLogic.Systems
         public void Execute()
         {
             m_Context.startTime = Utils.Time.logicTime;
+
+            m_Context.targets = new int[] { m_Context.target.entity };
 
             Execute(m_Context);
             foreach (var abilityEvent in m_AbilityEvents)

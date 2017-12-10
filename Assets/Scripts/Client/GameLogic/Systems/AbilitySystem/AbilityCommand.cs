@@ -1,15 +1,16 @@
 ﻿using Demo.GameLogic.Abilities;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Demo.GameLogic.Systems
 {
     struct AbilityCommandContext
     {
         public int caster;
-        public int target;
+        public int[] targets;
 
         //public AbilityContext ability;
-        public Dictionary<string, IModifierExecutor> modifiers;
+        public Dictionary<string, ModifierRoot> modifiers;
     }
 
     interface IAbilityCommand
@@ -27,20 +28,24 @@ namespace Demo.GameLogic.Systems
         }
         public void Execute(AbilityCommandContext ctx)
         {
-            var target = Game.Instance.gameLogicManager.entityManager.GetEntity(ctx.target);
-            if (target != null)
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            foreach (var id in ctx.targets)
             {
-                IModifierExecutor modifier;
-                if (ctx.modifiers.TryGetValue(m_ModifierName, out modifier))
+                var target = entityManager.GetEntity(id);
+                if (target != null)
                 {
-                    modifier = modifier.Clone();
-                    modifier.context = new ModifierContext()
+                    ModifierRoot modifier;
+                    if (ctx.modifiers.TryGetValue(m_ModifierName, out modifier))
                     {
-                        caster = ctx.caster,
-                        owner = target.id,
-                    };
+                        modifier = modifier.Clone() as ModifierRoot;
+                        modifier.context = new ModifierContext()
+                        {
+                            caster = ctx.caster,
+                            owner = target.id,
+                        };
 
-                    target.modifier.AddModifier(modifier);
+                        target.modifier.AddModifier(modifier);
+                    }
                 }
             }
         }
@@ -63,10 +68,14 @@ namespace Demo.GameLogic.Systems
 
         public void Execute(AbilityCommandContext ctx)
         {
-            var target = Game.Instance.gameLogicManager.entityManager.GetEntity(ctx.target);
-            if (target != null)
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            foreach (var id in ctx.targets)
             {
-                AbilityHelper.DoDamage(m_DamageType, m_DamageValue, target);
+                var target = entityManager.GetEntity(id);
+                if (target != null)
+                {
+                    AbilityHelper.DoDamage(m_DamageType, m_DamageValue, target);
+                }
             }
         }
 

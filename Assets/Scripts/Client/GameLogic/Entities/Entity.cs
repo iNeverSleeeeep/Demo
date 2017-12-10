@@ -96,6 +96,16 @@ namespace Demo.GameLogic.Entities
                 return m_CachedModifier;
             }
         }
+        Property m_CachedProperty = null;
+        public Property property
+        {
+            get
+            {
+                if (m_CachedProperty == null)
+                    m_CachedProperty = GetComponent<Property>();
+                return m_CachedProperty;
+            }
+        }
         Collider m_CachedCollider = null;
         public Collider collider
         {

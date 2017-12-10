@@ -84,6 +84,7 @@ namespace Demo
                     m_GameLogicManager.HandleFrameData(m_FrameBuffer.GetOneFrame());
                     m_GameLogicManager.Tick();
                     m_FrameDataCollector.Tick();
+                    coroutineManager.Tick();
                 }
             }
             m_LevelManager.Tick();

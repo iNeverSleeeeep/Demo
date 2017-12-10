@@ -3,6 +3,11 @@ using Demo.GameLogic.Entities;
 
 namespace Demo.GameLogic.Componnets
 {
+    interface IPropertyListener
+    {
+        void OnPropertyValueChanged();
+    }
+
     class Property : Component
     {
         public PropertyChangedDelegate onValueChanged = null;

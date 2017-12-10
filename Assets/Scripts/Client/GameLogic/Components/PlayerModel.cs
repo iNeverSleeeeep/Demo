@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Demo.GameLogic.Componnets
 {
-    class PlayerModel : Model
+    class PlayerModel : Model, IPropertyListener
     {
         Slider m_Hp = null;
         IEnumerator m_HpSliderUpdateCoroutine = null;
@@ -27,6 +27,12 @@ namespace Demo.GameLogic.Componnets
 
         }
 
+        public void OnPropertyValueChanged()
+        {
+            var property = entity.GetComponent<Property>();
+            m_Hp.value = property.hp / property.maxHp;
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -41,19 +47,13 @@ namespace Demo.GameLogic.Componnets
             base.OnDisable();
         }
 
-        void OnHpSliderLoadFinish(GameObject go)
+        protected void OnHpSliderLoadFinish(GameObject go)
         {
             m_Hp = GameObject.Instantiate(go, position, rotation).GetComponent<Slider>();
             m_Hp.transform.SetParent(GameObject.FindGameObjectWithTag("WorldHudCanvas").transform);
             m_Hp.transform.forward = Game.Instance.cameraManager.camera.transform.forward;
             m_Hp.transform.position = position + kHpSliderPositionOffset;
             OnPropertyValueChanged();
-        }
-
-        void OnPropertyValueChanged()
-        {
-            var property = entity.GetComponent<Property>();
-            m_Hp.value = property.hp / property.maxHp;
         }
     }
 }

@@ -61,6 +61,8 @@ namespace Demo.GameLogic.Systems
             List<IAbilityCommand> cmds = new List<IAbilityCommand>();
             if (command.applyModifier != null)
                 cmds.Add(new ApplyModifierCommand(command.applyModifier.modifierName));
+            if (command.damage != null)
+                cmds.Add(new DamageCommand(command.damage.type, command.damage.value));
 
             return cmds;
         }

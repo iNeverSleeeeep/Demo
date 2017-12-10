@@ -1,9 +1,8 @@
-﻿
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
 namespace Demo.GameLogic.Abilities
 {
+    [Serializable]
     class AbilityModifier
     {
         public string name;

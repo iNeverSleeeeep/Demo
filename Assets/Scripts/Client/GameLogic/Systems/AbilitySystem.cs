@@ -51,7 +51,7 @@ namespace Demo.GameLogic.Systems
                         if (status == AbilityConditionStatus.Success)
                         {
                             item.Value.movement.speed = 0;
-                            CastAbility(ability, ability.abilityToCast);
+                            CastAbility(ability, ability.abilityToCast, new AbilityTarget(target.id));
                             ability.abilityToCast = null;
                         }
                         else if (status == AbilityConditionStatus.TooFar)
@@ -80,7 +80,7 @@ namespace Demo.GameLogic.Systems
             return AbilityConditionStatus.Invalid;
         }
 
-        public void CastAbility(Ability ability, string abilityName)
+        public void CastAbility(Ability ability, string abilityName, AbilityTarget target)
         {
             if (m_CachedAbilities.ContainsKey(abilityName) == false)
                 return;
@@ -91,6 +91,7 @@ namespace Demo.GameLogic.Systems
                 root = m_CachedAbilities[abilityName].Clone() as AbilityRoot
             };
             ability.current = abilityData;
+            ability.current.root.target = target;
             ability.current.root.Execute();
             LogicEvent.RaiseEvent(LogicEventType.CastAbility, ability.entity);
         }
