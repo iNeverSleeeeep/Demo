@@ -91,6 +91,7 @@ namespace Demo.GameLogic.Systems
                 root = m_CachedAbilities[abilityName].Clone() as AbilityRoot
             };
             ability.current = abilityData;
+            ability.current.root.caster = ability.entity.id;
             ability.current.root.target = target;
             ability.current.root.Execute();
             LogicEvent.RaiseEvent(LogicEventType.CastAbility, ability.entity);

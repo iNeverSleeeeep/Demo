@@ -11,6 +11,8 @@
 	
 	"manaCost" : 10,
 	
+	"keepTime" : 1,
+	
 	"OnTime" : 
 	[
 		{

@@ -21,6 +21,8 @@ namespace Demo.GameLogic.Abilities
         public float castRange;
         // 冷却时间
         public float cooldown;
+        // 持续时间
+        public float keepTime;
         // 魔法消耗
         public float manaCost;
 

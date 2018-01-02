@@ -7,7 +7,7 @@ namespace Demo.GameLogic.Systems
     {
         public AbilityRoot Parse(DataDrivenAbility data)
         {
-            AbilityRoot root = new AbilityRoot();
+            AbilityRoot root = new AbilityRoot(data.keepTime);
 
             foreach (var abilityEvent in ParseAbilityEvent(data))
                 root.AddAbilityEvent(abilityEvent);

@@ -9,11 +9,13 @@ namespace Demo.GameLogic
 {
     sealed class GameLogicManager
     {
-        LogicTickManager m_LogicTickManager = null;
-        AbilitySystem m_AbilitySystem = null;
+        private LogicTickManager m_LogicTickManager = null;
+        private AbilitySystem m_AbilitySystem = null;
         public AbilitySystem abilitySystem { get { return m_AbilitySystem; } }
-        EntityManager m_EntityManager = null;
+        private EntityManager m_EntityManager = null;
         public EntityManager entityManager { get { return m_EntityManager; } }
+        private EntitySystem m_EntitySystem = null;
+        public EntitySystem entitySystem { get { return m_EntitySystem; } }
 
         public void HandleFrameData(FrameData data)
         {
@@ -73,6 +75,9 @@ namespace Demo.GameLogic
 
             m_AbilitySystem = new AbilitySystem();
             m_LogicTickManager.AddTickable(m_AbilitySystem);
+
+            m_EntitySystem = new EntitySystem();
+            m_LogicTickManager.AddTickable(m_EntitySystem);
 
             Game.Instance.frameDataCollector.AddProvider(btSystem);
 

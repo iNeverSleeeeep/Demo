@@ -75,6 +75,7 @@ namespace Demo.GameLogic.Systems
 
         private AbilityContext m_Context = null;
         private List<IAbilityExecutor> m_AbilityEvents = null;
+        private IEnumerator m_AutoFinish = null;
 
         public int caster
         {
@@ -92,11 +93,20 @@ namespace Demo.GameLogic.Systems
             get { return m_Context.target; }
             set { m_Context.target = value; }
         }
-
-        public AbilityRoot() : base(EmptyList)
+        
+        public float keepTime
         {
-            m_Context = new AbilityContext();
-            m_Context.modifiers = new Dictionary<string, ModifierRoot>();
+            get;
+            private set;
+        }
+
+        public AbilityRoot(float keepTime) : base(EmptyList)
+        {
+            this.keepTime = keepTime;
+            m_Context = new AbilityContext
+            {
+                modifiers = new Dictionary<string, ModifierRoot>()
+            };
             m_AbilityEvents = new List<IAbilityExecutor>();
         }
 
@@ -114,17 +124,30 @@ namespace Demo.GameLogic.Systems
             Execute(m_Context);
             foreach (var abilityEvent in m_AbilityEvents)
                 abilityEvent.Execute(m_Context);
+
+            if (keepTime > 0)
+            {
+                m_AutoFinish = AutoFinish();
+                Game.Instance.coroutineManager.StartLogic(m_AutoFinish);
+            }
         }
 
         public override void Kill()
         {
-            base.Kill();
+            if (m_AutoFinish != null)
+            {
+                Game.Instance.coroutineManager.StopLogic(m_AutoFinish);
+                m_AutoFinish = null;
+            }
+            foreach (var abilityEvent in m_AbilityEvents)
+                abilityEvent.Kill();
             m_Context = null;
+            base.Kill();
         }
 
         public override IAbilityExecutor Clone()
         {
-            var root =  new AbilityRoot();
+            var root =  new AbilityRoot(keepTime);
             foreach (var modifier in modifiers)
                 root.modifiers.Add(modifier.Key, modifier.Value);
             foreach (var abilityEvent in m_AbilityEvents)
@@ -135,6 +158,21 @@ namespace Demo.GameLogic.Systems
         public override void Execute(AbilityContext ctx)
         {
             ExecuteCommands(ctx);
+        }
+
+        private void Finish()
+        {
+            var caster = Game.Instance.gameLogicManager.entityManager.GetEntity(m_Context.caster);
+            if (caster != null && caster.ability.current != null && 
+                caster.ability.current.root == this)
+                caster.ability.current = null;
+        }
+
+        private IEnumerator AutoFinish()
+        {
+            yield return new WaitForLogicSeconds(keepTime);
+            m_AutoFinish = null;
+            Finish();
         }
     }
 
@@ -155,17 +193,24 @@ namespace Demo.GameLogic.Systems
 
         public override void Kill()
         {
+            if (m_TimeEnumrator != null)
+            {
+                Game.Instance.coroutineManager.StopLogic(m_TimeEnumrator);
+                m_TimeEnumrator = null;
+            }
             base.Kill();
         }
 
         public override void Execute(AbilityContext ctx)
         {
-            Game.Instance.coroutineManager.StartLogic(ExecuteDelay(ctx));
+            m_TimeEnumrator = ExecuteDelay(ctx);
+            Game.Instance.coroutineManager.StartLogic(m_TimeEnumrator);
         }
 
         private IEnumerator ExecuteDelay(AbilityContext ctx)
         {
             yield return new WaitForLogicSeconds(m_Time);
+            m_TimeEnumrator = null;
             ExecuteCommands(ctx);
         }
     }

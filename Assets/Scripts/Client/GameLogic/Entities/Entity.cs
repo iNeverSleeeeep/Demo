@@ -35,6 +35,12 @@ namespace Demo.GameLogic.Entities
             m_Componnets = new List<Component>();
         }
 
+        public void Destroy()
+        {
+            foreach (var component in m_Componnets)
+                component.Destroy();
+        }
+
         #region Some Cache to Make GetComponent Fast
         Position m_CachedPosition = null;
         public Position position
