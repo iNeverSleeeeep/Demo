@@ -18,7 +18,8 @@ namespace Demo.GameLogic.Systems
             }
             foreach (var entity in m_DeadPool)
             {
-                entity.model.Destroy();
+                foreach(var component in entity.GetAllComponents())
+                    component.Destroy();
                 Game.Instance.gameLogicManager.entityManager.RemoveEntity(entity.id);
             }
             m_DeadPool.Clear();

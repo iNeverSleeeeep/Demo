@@ -41,6 +41,11 @@ namespace Demo.GameLogic.Entities
                 component.Destroy();
         }
 
+        public override string ToString()
+        {
+            return id.ToString();
+        }
+
         #region Some Cache to Make GetComponent Fast
         Position m_CachedPosition = null;
         public Position position

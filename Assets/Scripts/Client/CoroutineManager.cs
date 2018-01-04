@@ -6,38 +6,48 @@ namespace Demo
 {
     class CoroutineManager
     {
-
         public CoroutineManager()
         {
-            m_Enumrators = new List<IEnumerator>();
+            
+            m_Enumerators = new List<IEnumerator>();
+            m_TempEnumerators = new List<IEnumerator>();
+            m_DeleteEnumerators = new List<IEnumerator>();
         }
 
         #region Logic Coroutine
-        List<IEnumerator> m_Enumrators = null;
-        bool m_InTicking = false;
+        List<IEnumerator> m_Enumerators = null;
+        List<IEnumerator> m_TempEnumerators = null;
+        List<IEnumerator> m_DeleteEnumerators = null;
 
         public void StartLogic(IEnumerator enumerator)
         {
-            Debug.Assert(m_InTicking == false);
-            m_Enumrators.Add(enumerator);
+            m_Enumerators.Add(enumerator);
         }
 
         public void StopLogic(IEnumerator enumerator)
         {
-            Debug.Assert(m_InTicking == false);
-            if (m_Enumrators.Contains(enumerator))
-                m_Enumrators.Remove(enumerator);
+            if (m_Enumerators.Contains(enumerator))
+                m_Enumerators.Remove(enumerator);
         }
 
         public void Tick()
         {
-            m_InTicking = true;
-            for (var i = m_Enumrators.Count - 1; i >= 0; --i)
+            m_TempEnumerators.Clear();
+            m_TempEnumerators.AddRange(m_Enumerators);
+            m_DeleteEnumerators.Clear();
+            for (var i = m_TempEnumerators.Count - 1; i >= 0; --i)
             {
-                if (m_Enumrators[i].MoveNext() == false)
-                    m_Enumrators.RemoveAt(i);
+                var enumerator = m_TempEnumerators[i];
+                var cyi = enumerator.Current as CustomYieldInstruction;
+                if (cyi != null && cyi.keepWaiting)
+                    continue;
+                var next = enumerator.MoveNext();
+                if (next == false)
+                    m_DeleteEnumerators.Add(enumerator);
             }
-            m_InTicking = false;
+            foreach(var enumerator in m_DeleteEnumerators)
+                if (m_Enumerators.Contains(enumerator))
+                    m_Enumerators.Remove(enumerator);
         }
         #endregion
 
@@ -87,7 +97,7 @@ namespace Demo
             get
             {
                 m_Current += Utils.Time.logicDeltaTime;
-                return m_Current > m_Time;
+                return m_Current < m_Time;
             }
         }
     }

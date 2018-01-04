@@ -45,6 +45,7 @@ namespace Demo.Input
                     type = FrameData.OperationType.EndMove
                 };
                 m_FrameData.Add(data);
+                m_Moving = false;
             }
         }
     }

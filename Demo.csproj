@@ -502,6 +502,7 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\ModifierExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\BehaviourTreeSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\EntitySystem.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\ModifierSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\MovementSystem.cs" />
     <Compile Include="Assets\Scripts\Client\Input\ClickableBehaviour.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\InputHandler.cs" />

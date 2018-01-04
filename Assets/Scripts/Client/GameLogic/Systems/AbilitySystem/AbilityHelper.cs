@@ -9,7 +9,7 @@ namespace Demo.GameLogic.Systems
     {
         public static float DoDamage(AbilityUnitDamageType type, float value, Entity target)
         {
-            Debug.Log("DoDamage type=" + type+" value="+value+" target="+target);
+            Debug.Log("DoDamage type=" + type+" value="+value+" target="+target.ToString());
             var old = target.property.hp;
             target.property.hp -= value;
             var listener = target.model as IPropertyListener;

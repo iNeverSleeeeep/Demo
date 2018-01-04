@@ -1,5 +1,6 @@
 ﻿using Demo.GameLogic.Abilities;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Demo.GameLogic.Systems
 {
@@ -59,9 +60,9 @@ namespace Demo.GameLogic.Systems
         private List<IAbilityCommand> ParseCommands(EventCommand command)
         {
             List<IAbilityCommand> cmds = new List<IAbilityCommand>();
-            if (command.applyModifier != null)
+            if (string.IsNullOrEmpty(command.applyModifier.modifierName) == false)
                 cmds.Add(new ApplyModifierCommand(command.applyModifier.modifierName));
-            if (command.damage != null)
+            if ((int)command.damage.type != 0 && command.damage.value != 0)
                 cmds.Add(new DamageCommand(command.damage.type, command.damage.value));
 
             return cmds;

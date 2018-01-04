@@ -9,7 +9,7 @@ namespace Demo.Level
     {
         public override void Load()
         {
-            Game.Instance.gameLogicManager.abilitySystem.AddAbility("AbilityData/TestAbility");
+            Game.Instance.gameLogicManager.abilitySystem.AddAbility("AbilityData/TestAttack");
 
             // player
             var entity = EntityFactory.CreateEntity(EntityFactory.EntityType.Player);
@@ -22,7 +22,7 @@ namespace Demo.Level
             Game.Instance.cameraManager.target = entity.model.transform;
             entity.model.name = "player";
             entity.model.material.color = Color.blue;
-            entity.ability.attack = "TestAbility";
+            entity.ability.attack = "TestAttack";
             entity.clickable.clickCallback = Game.Instance.inputManager.inputHandler.OnEntityClick;
 
             // computer

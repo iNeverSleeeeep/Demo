@@ -26,7 +26,7 @@ namespace Demo.Input
             {
                 id = Game.Instance.inputManager.entity,
                 type = FrameData.OperationType.Ability,
-                abilityName = "TestAbility",
+                abilityName = "TestAttack",
                 target = target.id
             };
             m_FrameData.Add(data);

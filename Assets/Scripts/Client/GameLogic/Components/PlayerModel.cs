@@ -44,6 +44,8 @@ namespace Demo.GameLogic.Componnets
         protected override void OnDisable()
         {
             entity.GetComponent<Property>().onValueChanged -= OnPropertyValueChanged;
+            GameObject.Destroy(m_Hp.gameObject);
+            m_Hp = null;
             base.OnDisable();
         }
 

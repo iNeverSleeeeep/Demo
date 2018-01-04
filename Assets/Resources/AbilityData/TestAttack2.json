@@ -1,5 +1,5 @@
 ﻿{
-	"name" : "TestAbility",
+	"name" : "TestAttack2",
 	
 	"behaviour" : { "UnitTarget" : true },
 	
@@ -17,6 +17,23 @@
 	[
 		{
 			"startTime" : 0.5,
+			"LinearProjectile" :
+			{
+				"target" : "POINT",
+				"effectName" : "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf",
+				"moveSpeed" : 857,
+				"startRadius" : 115,
+				"endRadius" : 115,
+				"startPosition" : "attach_attack1",
+				"fixedDistance" : 3000,
+				"targetTeams" : "DOTA_UNIT_TARGET_TEAM_ENEMY",
+				"targetTypes" : "DOTA_UNIT_TARGET_HERO",
+				"targetFlags" : "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES",
+				"hasFrontalCone" : 0,
+				"providesVision" : 1,
+				"visionRadius" : 650
+			},
+
 			"damage" : 
 			{
 				"target" : { "center" : 1 },

@@ -12,6 +12,8 @@ namespace Demo.GameLogic
         private LogicTickManager m_LogicTickManager = null;
         private AbilitySystem m_AbilitySystem = null;
         public AbilitySystem abilitySystem { get { return m_AbilitySystem; } }
+        private ModifierSystem m_ModifierSystem = null;
+        public ModifierSystem modifierSystem { get { return m_ModifierSystem; } }
         private EntityManager m_EntityManager = null;
         public EntityManager entityManager { get { return m_EntityManager; } }
         private EntitySystem m_EntitySystem = null;
@@ -75,6 +77,9 @@ namespace Demo.GameLogic
 
             m_AbilitySystem = new AbilitySystem();
             m_LogicTickManager.AddTickable(m_AbilitySystem);
+
+            m_ModifierSystem = new ModifierSystem();
+            m_LogicTickManager.AddTickable(m_ModifierSystem);
 
             m_EntitySystem = new EntitySystem();
             m_LogicTickManager.AddTickable(m_EntitySystem);

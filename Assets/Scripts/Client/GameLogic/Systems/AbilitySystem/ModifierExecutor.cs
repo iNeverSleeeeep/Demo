@@ -15,29 +15,31 @@ namespace Demo.GameLogic.Systems
         private List<IAbilityCommand> m_Commands = null;
         protected List<IAbilityCommand> commands { get { return m_Commands; } }
 
-        public ModifierContext context { get; set; }
-
         public IModifierExecutor(List<IAbilityCommand> cmds)
         {
             m_Commands = cmds;
         }
 
-        public abstract void Execute();
+        public abstract void Execute(ModifierContext context);
         public abstract IModifierExecutor Clone();
 
         public virtual void Kill()
         {
-            var ctx = new AbilityCommandContext();
-            foreach (var cmd in m_Commands)
-                cmd.Reverse(ctx);
             m_Commands = null;
         }
 
-        protected void ExecuteCommands()
+        protected void ExecuteCommands(ModifierContext context)
         {
-            var ctx = new AbilityCommandContext();
-            foreach (var cmd in m_Commands)
-                cmd.Execute(ctx);
+            if (m_Commands != null)
+            {
+                var ctx = new AbilityCommandContext
+                {
+                    caster = context.caster,
+                    target = context.owner
+                };
+                foreach (var cmd in m_Commands)
+                    cmd.Execute(ctx);
+            }
         }
     }
 
@@ -47,6 +49,8 @@ namespace Demo.GameLogic.Systems
         private List<IModifierExecutor> modifiers;
         private float m_Duration;
         private IEnumerator m_AutoKill;
+        
+        public ModifierContext context { get; set; }
 
         public ModifierRoot(float duration) : base(EmptyList)
         {
@@ -62,14 +66,20 @@ namespace Demo.GameLogic.Systems
         public override IModifierExecutor Clone()
         {
             var root = new ModifierRoot(m_Duration);
-
+            foreach (var modifier in modifiers)
+                root.AddModifier(modifier.Clone());
             return root;
         }
 
-        public override void Execute()
+        public void Execute()
+        {
+            Execute(context);
+        }
+
+        public override void Execute(ModifierContext context)
         {
             foreach (var modifier in modifiers)
-                modifier.Execute();
+                modifier.Execute(context);
             if (m_Duration > 0)
             {
                 m_AutoKill = AutoKill();
@@ -80,12 +90,22 @@ namespace Demo.GameLogic.Systems
         public IEnumerator AutoKill()
         {
             yield return new WaitForLogicSeconds(m_Duration);
+            m_AutoKill = null;
             Kill();
         }
 
         public override void Kill()
         {
-            m_AutoKill = null;
+            if (m_AutoKill != null)
+            {
+                Game.Instance.coroutineManager.StopLogic(m_AutoKill);
+                m_AutoKill = null; 
+            }
+            foreach (var modifier in modifiers)
+                modifier.Kill();
+            var entity = Game.Instance.gameLogicManager.entityManager.GetEntity(context.owner);
+            if (entity != null)
+                entity.modifier.RemoveModifier(this);
             base.Kill();
         }
     }
@@ -100,9 +120,9 @@ namespace Demo.GameLogic.Systems
             m_Interval = interval;
         }
 
-        public override void Execute()
+        public override void Execute(ModifierContext context)
         {
-            m_IntervalEnumrator = ExecuteInterval(m_Interval);
+            m_IntervalEnumrator = ExecuteInterval(m_Interval, context);
             Game.Instance.coroutineManager.StartLogic(m_IntervalEnumrator);
         }
 
@@ -118,11 +138,11 @@ namespace Demo.GameLogic.Systems
             return new ModifierThinkInterval(commands, m_Interval);
         }
 
-        private IEnumerator ExecuteInterval(float interval)
+        private IEnumerator ExecuteInterval(float interval, ModifierContext context)
         {
             while (true)
             {
-                ExecuteCommands();
+                ExecuteCommands(context);
                 yield return new WaitForLogicSeconds(interval);
             }
         }

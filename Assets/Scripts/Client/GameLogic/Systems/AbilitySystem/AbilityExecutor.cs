@@ -57,14 +57,19 @@ namespace Demo.GameLogic.Systems
 
         protected void ExecuteCommands(AbilityContext ctx)
         {
-            var cmdCtx = new AbilityCommandContext();
-            cmdCtx.caster = ctx.caster;
-            cmdCtx.targets = ctx.targets;
-            cmdCtx.modifiers = ctx.modifiers;
             if (commands != null)
             {
+                var cmdCtx = new AbilityCommandContext();
+                cmdCtx.caster = ctx.caster;
+                cmdCtx.modifiers = ctx.modifiers;
                 foreach (var cmd in commands)
-                    cmd.Execute(cmdCtx);
+                {
+                    foreach (var target in ctx.targets)
+                    {
+                        cmdCtx.target = target;
+                        cmd.Execute(cmdCtx);
+                    }
+                }
             }
         }
     }
