@@ -1,4 +1,5 @@
 ﻿using Demo.GameLogic.Abilities;
+using Demo.GameLogic.Entities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Demo.GameLogic.Systems
         public Dictionary<string, ModifierRoot> modifiers;
         public Dictionary<AbilityEventTrigger, TriggerEvent> triggers;
 
-        public delegate void TriggerEvent();
+        public delegate void TriggerEvent(int target);
     }
 
     abstract class IAbilityExecutor
@@ -62,6 +63,7 @@ namespace Demo.GameLogic.Systems
                 var cmdCtx = new AbilityCommandContext();
                 cmdCtx.caster = ctx.caster;
                 cmdCtx.modifiers = ctx.modifiers;
+                cmdCtx.triggers = ctx.triggers;
                 foreach (var cmd in commands)
                 {
                     foreach (var target in ctx.targets)
@@ -110,7 +112,8 @@ namespace Demo.GameLogic.Systems
             this.keepTime = keepTime;
             m_Context = new AbilityContext
             {
-                modifiers = new Dictionary<string, ModifierRoot>()
+                modifiers = new Dictionary<string, ModifierRoot>(),
+                triggers = new Dictionary<AbilityEventTrigger, AbilityContext.TriggerEvent>()
             };
             m_AbilityEvents = new List<IAbilityExecutor>();
         }
@@ -251,11 +254,17 @@ namespace Demo.GameLogic.Systems
             base.Kill();
         }
 
-        private void ExecuteImpl()
+        private void ExecuteImpl(int target)
         {
-            var commandCtx = new AbilityCommandContext();
+            var cmdCtx = new AbilityCommandContext
+            {
+                caster = m_Context.caster,
+                target = target,
+                modifiers = m_Context.modifiers,
+                triggers = m_Context.triggers
+            };
             foreach (var cmd in commands)
-                cmd.Execute(commandCtx);
+                cmd.Execute(cmdCtx);
         }
     }
 }

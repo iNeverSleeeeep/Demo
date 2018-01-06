@@ -1,6 +1,8 @@
 ﻿using Demo.GameLogic.Abilities;
+using Demo.GameLogic.Componnets;
+using Demo.GameLogic.Entities;
+using Demo.Utils;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Demo.GameLogic.Systems
 {
@@ -8,25 +10,24 @@ namespace Demo.GameLogic.Systems
     {
         public int caster;
         public int target;
-
-        //public AbilityContext ability;
+        
         public Dictionary<string, ModifierRoot> modifiers;
+        public Dictionary<AbilityEventTrigger, AbilityContext.TriggerEvent> triggers;
     }
 
     interface IAbilityCommand
     {
         void Execute(AbilityCommandContext ctx);
-        void Reverse(AbilityCommandContext ctx);
     }
 
     class ApplyModifierCommand : IAbilityCommand
     {
         private string m_ModifierName;
-        public ApplyModifierCommand(string modifierName)
+        public ApplyModifierCommand(ApplyModifier modifier)
         {
-            Debug.Log("ApplyModifier modifierName="+ modifierName);
-            m_ModifierName = modifierName;
+            m_ModifierName = modifier.modifierName;
         }
+
         public void Execute(AbilityCommandContext ctx)
         {
             var entityManager = Game.Instance.gameLogicManager.entityManager;
@@ -47,10 +48,6 @@ namespace Demo.GameLogic.Systems
                 }
             }
         }
-        public void Reverse(AbilityCommandContext ctx)
-        {
-
-        }
     }
 
     class DamageCommand : IAbilityCommand
@@ -58,11 +55,10 @@ namespace Demo.GameLogic.Systems
         private AbilityUnitDamageType m_DamageType;
         private float m_DamageValue;
 
-        public DamageCommand(AbilityUnitDamageType type, float value)
+        public DamageCommand(Damage damage)
         {
-            Debug.Log("DamageCommand value=" + value);
-            m_DamageType = type;
-            m_DamageValue = value;
+            m_DamageType = damage.type;
+            m_DamageValue = damage.value;
         }
 
         public void Execute(AbilityCommandContext ctx)
@@ -74,10 +70,46 @@ namespace Demo.GameLogic.Systems
                 AbilityHelper.DoDamage(m_DamageType, m_DamageValue, target);
             }
         }
+    }
 
-        public void Reverse(AbilityCommandContext ctx)
+    class TrackingProjectileCommand : IAbilityCommand
+    {
+        private float m_VisionRadius;
+        private float m_MoveSpeed;
+
+        public TrackingProjectileCommand(TrackingProjectile tp)
         {
+            m_MoveSpeed = tp.moveSpeed;
+            m_VisionRadius = tp.visionRadius;
+        }
+
+        public void Execute(AbilityCommandContext ctx)
+        {
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            var caster = entityManager.GetEntity(ctx.caster);
+            var target = entityManager.GetEntity(ctx.target);
+
+            var tp = Entity.Create(EntityType.TrackingProjectile);
+            entityManager.AddEntity(tp);
+            tp.collider.size = m_VisionRadius;
+            tp.collider.selfLayer = (int)Collider.Layer.Projectile;
+            tp.collider.maskLayer = (int)Collider.Layer.Hero;
+            tp.movement.defaultSpeed = tp.movement.speed = m_MoveSpeed;
+            tp.tracker.target = target.id;
+            tp.position.position = caster.position.position;
+            tp.active = true;
+            tp.model.name = "tp caster:" + caster.ToString() + " target:" + target.ToString();
+            tp.model.position = caster.position.position;
             
+            tp.collider.onCollide = (projectile, other) =>
+            {
+                if (ctx.target != other.id)
+                    return;
+                if (ctx.triggers.ContainsKey(AbilityEventTrigger.OnProjectileHitUnit))
+                    ctx.triggers[AbilityEventTrigger.OnProjectileHitUnit].Invoke(other.id);
+
+                Entity.Destroy(projectile);
+            };
         }
     }
 }

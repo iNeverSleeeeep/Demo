@@ -3,6 +3,14 @@ using Demo.GameLogic.Componnets;
 
 namespace Demo.GameLogic.Entities
 {
+    enum EntityType
+    {
+        Player,
+        Computer,
+        TrackingProjectile,
+        LinearProjectile,
+    }
+
     static class EntityFactory
     {
         static class IDProvider
@@ -11,14 +19,7 @@ namespace Demo.GameLogic.Entities
             public static int Get() { return Next++; }
         }
 
-        public enum EntityType
-        {
-            Player,
-            Computer,
-            Bullet,
-        }
-
-        public static Entity CreateEntity(EntityType type)
+        public static Entity Create(EntityType type)
         {
             var entity = new Entity(IDProvider.Get());
             switch (type)
@@ -44,10 +45,17 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Collider(entity));
                     entity.AddComponent(new Clickable(entity));
                     break;
-                case EntityType.Bullet:
+                case EntityType.LinearProjectile:
                     entity.AddComponent(new Position(entity));
                     entity.AddComponent(new Movement(entity));
                     entity.AddComponent(new Model(entity));
+                    entity.AddComponent(new Collider(entity));
+                    break;
+                case EntityType.TrackingProjectile:
+                    entity.AddComponent(new Position(entity));
+                    entity.AddComponent(new Movement(entity));
+                    entity.AddComponent(new Model(entity));
+                    entity.AddComponent(new Tracker(entity));
                     entity.AddComponent(new Collider(entity));
                     break;
             }

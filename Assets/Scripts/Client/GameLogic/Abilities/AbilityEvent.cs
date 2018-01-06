@@ -12,6 +12,7 @@ namespace Demo.GameLogic.Abilities
 
         public ApplyModifier applyModifier;
         public TrackingProjectile trackingProjectile;
+        public LinearProjectile linearProjectile;
         public Damage damage;
         public ApplyMotionController applyMotionController;
         public RunScript runScript;

@@ -17,11 +17,7 @@ namespace Demo.GameLogic.Systems
                     m_DeadPool.Add(item.Value);
             }
             foreach (var entity in m_DeadPool)
-            {
-                foreach(var component in entity.GetAllComponents())
-                    component.Destroy();
-                Game.Instance.gameLogicManager.entityManager.RemoveEntity(entity.id);
-            }
+                Entity.Destroy(entity);
             m_DeadPool.Clear();
         }
     }

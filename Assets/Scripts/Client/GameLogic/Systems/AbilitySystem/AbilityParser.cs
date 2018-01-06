@@ -43,6 +43,10 @@ namespace Demo.GameLogic.Systems
                 foreach (var command in ability.OnSpellStart)
                     executors.Add(new AbilityTirgger(ParseCommands(command), AbilityEventTrigger.OnSpellStart));
 
+            if (ability.OnProjectileHitUnit != null)
+                foreach (var command in ability.OnProjectileHitUnit)
+                    executors.Add(new AbilityTirgger(ParseCommands(command), AbilityEventTrigger.OnProjectileHitUnit));
+
             return executors;
         }
 
@@ -61,9 +65,11 @@ namespace Demo.GameLogic.Systems
         {
             List<IAbilityCommand> cmds = new List<IAbilityCommand>();
             if (string.IsNullOrEmpty(command.applyModifier.modifierName) == false)
-                cmds.Add(new ApplyModifierCommand(command.applyModifier.modifierName));
+                cmds.Add(new ApplyModifierCommand(command.applyModifier));
             if ((int)command.damage.type != 0 && command.damage.value != 0)
-                cmds.Add(new DamageCommand(command.damage.type, command.damage.value));
+                cmds.Add(new DamageCommand(command.damage));
+            if (command.trackingProjectile.visionRadius != 0 && command.trackingProjectile.moveSpeed != 0)
+                cmds.Add(new TrackingProjectileCommand(command.trackingProjectile));
 
             return cmds;
         }

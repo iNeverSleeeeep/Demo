@@ -25,13 +25,20 @@ namespace Demo.GameLogic.Abilities
         public EventTarget target;
     }
 
-    // 发射子弹类
+    // 跟踪的子弹
     [Serializable]
     class TrackingProjectile
     {
         public EventTarget target;
         public float visionRadius;
         public float moveSpeed;
+    }
+
+    // 直线子弹
+    [Serializable]
+    class LinearProjectile
+    {
+        
     }
 
     // 伤害

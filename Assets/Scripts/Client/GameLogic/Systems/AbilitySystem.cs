@@ -56,10 +56,7 @@ namespace Demo.GameLogic.Systems
                         }
                         else if (status == AbilityConditionStatus.TooFar)
                         {
-                            var offset = target.position.position - item.Value.position.position;
-                            var angle = Vector3.Angle(offset, Vector3.forward);
-                            if (Vector3.Cross(offset, Vector3.forward).y > 0)
-                                angle = 360 - angle;
+                            var angle = Utils.Angle.Between(item.Value.position.position, target.position.position);
                             item.Value.movement.speed = item.Value.movement.defaultSpeed;
                             item.Value.movement.angle = angle;
                         }

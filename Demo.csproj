@@ -485,6 +485,7 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\PlayerModel.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Position.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Property.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Components\Tracking.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Entities\Entity.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Entities\EntityFactory.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Entities\EntityManager.cs" />
@@ -501,9 +502,11 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityParser.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\ModifierExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\BehaviourTreeSystem.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\CollideSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\EntitySystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\ModifierSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\MovementSystem.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\TrackingSystem.cs" />
     <Compile Include="Assets\Scripts\Client\Input\ClickableBehaviour.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\StandaloneInputHandler.cs" />
@@ -520,6 +523,8 @@
     <Compile Include="Assets\Scripts\Client\Resource\ResourceLoader.cs" />
     <Compile Include="Assets\Scripts\Client\UI\BasePanel.cs" />
     <Compile Include="Assets\Scripts\Client\UI\CastSkillPanel.cs" />
+    <Compile Include="Assets\Scripts\Client\Utilities\Common.cs" />
+    <Compile Include="Assets\Scripts\Client\Utilities\Extention.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Random.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\String.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Time.cs" />

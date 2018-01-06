@@ -12,6 +12,15 @@ namespace Demo.GameLogic.Componnets
 
         public float size { get; set; }
 
+        public enum Layer
+        {
+            Hero = 1 << 0,
+            Projectile = 1 << 1
+        }
+        
+        public int selfLayer { private get; set; }
+        public int maskLayer { private get; set; }
+
         public Collider(Entity entity) : base(entity)
         {
 
@@ -19,11 +28,13 @@ namespace Demo.GameLogic.Componnets
 
         public bool IsCollideWith(Collider other)
         {
+            if ((selfLayer & other.maskLayer) == 0 && (maskLayer & other.selfLayer) == 0)
+                return false;
             var sum2 = size * size + other.size * other.size;
             var dis = other.entity.position.position - entity.position.position;
             return sum2 > dis.sqrMagnitude;
         }
 
-        public delegate void CollideEvent(Entity moved, Entity other);
+        public delegate void CollideEvent(Entity self, Entity other);
     }
 }

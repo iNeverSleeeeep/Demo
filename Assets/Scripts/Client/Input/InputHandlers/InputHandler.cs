@@ -21,12 +21,13 @@ namespace Demo.Input
             var target = userData as Entity;
             if (target.id == Game.Instance.inputManager.entity)
                 return;
-
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            var entity = entityManager.GetEntity(Game.Instance.inputManager.entity);
             var data = new FrameData.EntityData()
             {
-                id = Game.Instance.inputManager.entity,
+                id = entity.id,
                 type = FrameData.OperationType.Ability,
-                abilityName = "TestAttack",
+                abilityName = entity.ability.attack,
                 target = target.id
             };
             m_FrameData.Add(data);

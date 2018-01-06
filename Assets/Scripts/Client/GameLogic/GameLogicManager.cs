@@ -71,6 +71,8 @@ namespace Demo.GameLogic
         {
             m_LogicTickManager = new LogicTickManager();
             m_LogicTickManager.AddTickable(new MovementSystem());
+            m_LogicTickManager.AddTickable(new CollideSystem());
+            m_LogicTickManager.AddTickable(new TrackingSystem());
 
             var btSystem = new BehaviourTreeSystem();
             m_LogicTickManager.AddTickable(btSystem);

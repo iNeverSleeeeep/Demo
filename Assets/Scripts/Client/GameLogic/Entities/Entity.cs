@@ -9,6 +9,23 @@ namespace Demo.GameLogic.Entities
         readonly int m_Id = 0;
         public int id { get { return m_Id; } }
 
+        private bool m_Active = false;
+        public bool active
+        {
+            get
+            {
+                return m_Active;
+            }
+            set
+            {
+                if (m_Active == value)
+                    return;
+                m_Active = value;
+                foreach (var component in m_Componnets)
+                    component.enabled = m_Active;
+            }
+        }
+
         List<Component> m_Componnets = null;
         public T GetComponent<T>() where T : Component
         {
@@ -35,15 +52,21 @@ namespace Demo.GameLogic.Entities
             m_Componnets = new List<Component>();
         }
 
-        public void Destroy()
-        {
-            foreach (var component in m_Componnets)
-                component.Destroy();
-        }
-
         public override string ToString()
         {
             return id.ToString();
+        }
+
+        public static Entity Create(EntityType type)
+        {
+            return EntityFactory.Create(type);
+        }
+
+        public static void Destroy(Entity entity)
+        {
+            foreach (var component in entity.GetAllComponents())
+                component.Destroy();
+            Game.Instance.gameLogicManager.entityManager.RemoveEntity(entity.id);
         }
 
         #region Some Cache to Make GetComponent Fast
@@ -127,12 +150,26 @@ namespace Demo.GameLogic.Entities
                 return m_CachedCollider;
             }
         }
+        Tracker m_CachedTracker = null;
+        public Tracker tracker
+        {
+            get
+            {
+                if (m_CachedTracker == null)
+                    m_CachedTracker = GetComponent<Tracker>();
+                return m_CachedTracker;
+            }
+        }
         public void ClearCache()
         {
             m_CachedPosition = null;
             m_CachedMovement = null;
             m_CachedModel = null;
             m_CachedAbility = null;
+            m_CachedCollider = null;
+            m_CachedProperty = null;
+            m_CachedModifier = null;
+            m_CachedClickable = null;
         }
         #endregion
 
