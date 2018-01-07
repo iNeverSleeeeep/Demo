@@ -19,13 +19,13 @@
 			"startTime" : 0.5,
 			"damage" : 
 			{
-				"target" : { "target" : 1 },
+				"target" : { "center" : 1 },
 				"value" : 10,
 				"type" : 2
 			},
 			"applyModifier" : 
 			{
-				"target" : {"target":1},
+				"target" : {"center":1},
 				"modifierName" : "DamageBuff"
 			}
 		}
@@ -43,7 +43,7 @@
 					"thinkInterval" : 0.5,
 					"damage" : 
 					{
-						"target" : { "target" : 1 },
+						"target" : { "center" : 1 },
 						"value" : 5,
 						"type" : 2
 					}

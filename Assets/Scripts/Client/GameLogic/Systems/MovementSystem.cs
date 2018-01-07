@@ -18,6 +18,7 @@ namespace Demo.GameLogic.Systems
 
                     entity.position.position = nextPosition;
 
+                    // TODO 20180107 移动的逻辑和表现要分开，不然会显得卡
                     var model = entity.model;
                     if (model != null)
                         model.position = nextPosition;

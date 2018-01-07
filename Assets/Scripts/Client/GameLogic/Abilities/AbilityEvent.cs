@@ -16,6 +16,8 @@ namespace Demo.GameLogic.Abilities
         public Damage damage;
         public ApplyMotionController applyMotionController;
         public RunScript runScript;
+        public AttackSpeed attackSpeed;
+        public MagicImmune magicImmune;
     }
 }
 

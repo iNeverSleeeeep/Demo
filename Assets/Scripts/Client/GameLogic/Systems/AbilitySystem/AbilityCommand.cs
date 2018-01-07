@@ -67,7 +67,7 @@ namespace Demo.GameLogic.Systems
             var target = entityManager.GetEntity(ctx.target);
             if (target != null)
             {
-                AbilityHelper.DoDamage(m_DamageType, m_DamageValue, target);
+                LogicHelper.DoDamage(m_DamageType, m_DamageValue, target);
             }
         }
     }
@@ -100,7 +100,9 @@ namespace Demo.GameLogic.Systems
             tp.active = true;
             tp.model.name = "tp caster:" + caster.ToString() + " target:" + target.ToString();
             tp.model.position = caster.position.position;
-            
+            tp.model.material.color = UnityEngine.Color.red;
+            tp.camp.type = caster.camp.type;
+
             tp.collider.onCollide = (projectile, other) =>
             {
                 if (ctx.target != other.id)

@@ -16,19 +16,19 @@ namespace Demo.GameLogic.Abilities
         /// 敌人
         /// </summary>
         [Description("敌人")]
-        Enemy,    //  敌人
+        Enemy = 2,    //  敌人
 
         /// <summary>
         /// 友军
         /// </summary>
         [Description("友军")]
-        Friendly, //  友军
+        Friendly = 3, //  友军
 
         /// <summary>
         /// ?
         /// </summary>
         [Description("Custom")]
-        Custom,   //	?
+        Custom = 4,   //	?
     }
 
     // 伤害类型
@@ -206,7 +206,7 @@ namespace Demo.GameLogic.Abilities
         /// 释放者
         /// </summary>
         [Description("释放者")]
-        Caster
+        Caster = 2
     }
 }
 

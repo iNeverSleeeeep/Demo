@@ -33,6 +33,7 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Modifier(entity));
                     entity.AddComponent(new Collider(entity));
                     entity.AddComponent(new Clickable(entity));
+                    entity.AddComponent(new Camp(entity));
                     break;
                 case EntityType.Computer:
                     entity.AddComponent(new Position(entity));
@@ -44,12 +45,14 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Modifier(entity));
                     entity.AddComponent(new Collider(entity));
                     entity.AddComponent(new Clickable(entity));
+                    entity.AddComponent(new Camp(entity));
                     break;
                 case EntityType.LinearProjectile:
                     entity.AddComponent(new Position(entity));
                     entity.AddComponent(new Movement(entity));
                     entity.AddComponent(new Model(entity));
                     entity.AddComponent(new Collider(entity));
+                    entity.AddComponent(new Camp(entity));
                     break;
                 case EntityType.TrackingProjectile:
                     entity.AddComponent(new Position(entity));
@@ -57,6 +60,7 @@ namespace Demo.GameLogic.Entities
                     entity.AddComponent(new Model(entity));
                     entity.AddComponent(new Tracker(entity));
                     entity.AddComponent(new Collider(entity));
+                    entity.AddComponent(new Camp(entity));
                     break;
             }
             

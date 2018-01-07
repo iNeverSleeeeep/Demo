@@ -11,6 +11,8 @@ namespace Demo.Level
             property.maxMana = 100;
             property.hp = property.maxHp;
             property.mana = property.maxMana;
+            property.recoveryHp = 2;
+            property.recoveryMana = 1;
         }
     }
 }

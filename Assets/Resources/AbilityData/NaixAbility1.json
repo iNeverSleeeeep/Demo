@@ -1,0 +1,91 @@
+﻿{
+	"name" : "NaixAbility1",
+	
+	"behaviour" : { "NoTarget" : true },
+	
+	"targetTeam" : 3,
+	
+	"cooldown" : 10,
+	
+	"manaCost" : 10,
+	
+	"keepTime" : 0,
+	
+	"OnTime" : 
+	[
+		{
+			"startTime" : 0,
+			"applyModifier" : 
+			{
+				"target" : {"target":2},
+				"modifierName" : "MagicImmuneBuff"
+			}
+		},
+		
+		{
+			"startTime" : 0,
+			"applyModifier" : 
+			{
+				"target" : {"target" : 2 },
+				"modifierName" : "AttackSpeedBuff"
+			}
+		}
+	],
+	
+	"modifiers" : 
+	[
+		{
+			"name" : "MagicImmuneBuff",
+			"duration" : 5,
+			
+			"OnAdd" : 
+			[
+				{
+					"magicImmune" : 
+					{
+						"target" : { "target" : 1 },
+						"value" : 1,
+					}
+				}
+			]
+			
+			"OnRemove" :
+			[
+				{
+					"magicImmune" : 
+					{
+						"target" : { "target" : 1 },
+						"value" : -1,
+					}
+				}
+			]
+		},
+		
+		{
+			"name" : "AttackSpeedBuff",
+			"duration" : 5,
+			
+			"OnAdd" : 
+			[
+				{
+					"attackSpeed" : 
+					{
+						"target" : { "target" : 1 },
+						"value" : 50,
+					}
+				}
+			]
+			
+			"OnRemove" :
+			[
+				{
+					"attackSpeed" : 
+					{
+						"target" : { "target" : 1 },
+						"value" : -50,
+					}
+				}
+			]
+		}
+	]
+}

@@ -13,7 +13,7 @@ namespace Demo.GameLogic.Abilities
         public AbilityUnitTargetType type;
         public AbilityUnitTargetFlags flags;
         public float radius;
-        public AbilityTarget center;
+        public AbilityTarget target;
     }
     #endregion
 
@@ -47,6 +47,22 @@ namespace Demo.GameLogic.Abilities
     {
         public EventTarget target;
         public AbilityUnitDamageType type;
+        public float value;
+    }
+
+    // 攻击速度
+    [Serializable]
+    class AttackSpeed
+    {
+        public EventTarget target;
+        public float value;
+    }
+
+    // 魔法免疫
+    [Serializable]
+    class MagicImmune
+    {
+        public EventTarget target;
         public float value;
     }
 

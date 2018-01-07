@@ -9,6 +9,8 @@ namespace Demo.GameLogic.Abilities
         public float duration;
 
         public EventCommand[] OnIntervalThink;
+        public EventCommand[] OnAdd;
+        public EventCommand[] OnRemove;
     }
 }
 

@@ -476,6 +476,7 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Abilities\DataDrivenAbility.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Ability.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Brain.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Components\Camp.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Clickable.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Collider.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Components\Component.cs" />
@@ -492,13 +493,13 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Events\LogicEvent.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Events\LogicEventType.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\GameLogicManager.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\LogicHelper.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\LogicTick\ITickable.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\LogicTick\LogicTickManager.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityCommand.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityCondition.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityExecutor.cs" />
-    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityHelper.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\AbilityParser.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\AbilitySystem\ModifierExecutor.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\BehaviourTreeSystem.cs" />
@@ -506,6 +507,7 @@
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\EntitySystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\ModifierSystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\MovementSystem.cs" />
+    <Compile Include="Assets\Scripts\Client\GameLogic\Systems\RecoverySystem.cs" />
     <Compile Include="Assets\Scripts\Client\GameLogic\Systems\TrackingSystem.cs" />
     <Compile Include="Assets\Scripts\Client\Input\ClickableBehaviour.cs" />
     <Compile Include="Assets\Scripts\Client\Input\InputHandlers\InputHandler.cs" />

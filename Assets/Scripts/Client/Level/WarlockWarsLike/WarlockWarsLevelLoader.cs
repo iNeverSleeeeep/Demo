@@ -21,6 +21,7 @@ namespace Demo.Level
             PlayerPropertyInitializer.Handle(entity.GetComponent<Property>());
             entity.active = true;
             entity.collider.size = 1;
+            entity.camp.type = Camp.Type.Camp1;
             entity.collider.selfLayer = (int)GameLogic.Componnets.Collider.Layer.Hero;
             Game.Instance.cameraManager.target = entity.model.transform;
             entity.model.name = "player";
@@ -35,6 +36,7 @@ namespace Demo.Level
                 Game.Instance.gameLogicManager.entityManager.AddEntity(computer);
                 computer.GetComponent<Brain>().enemy = entity.id;
                 computer.movement.defaultSpeed = 2;
+                computer.camp.type = Camp.Type.Camp2;
                 computer.collider.size = 1;
                 computer.collider.selfLayer = (int)GameLogic.Componnets.Collider.Layer.Hero;
                 computer.position.position = new Vector3(Utils.Random.Range(1, 20), 0, Utils.Random.Range(1, 20));

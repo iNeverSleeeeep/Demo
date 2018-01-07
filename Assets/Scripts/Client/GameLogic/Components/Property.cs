@@ -12,6 +12,7 @@ namespace Demo.GameLogic.Componnets
     {
         public PropertyChangedDelegate onValueChanged = null;
 
+        // 一级属性
         struct PropertyLevel1
         {
             public float strength;
@@ -19,6 +20,7 @@ namespace Demo.GameLogic.Componnets
             public float agility;
         }
 
+        // 二级属性
         struct PropertyLevel2
         {
             public float hp;
@@ -29,12 +31,14 @@ namespace Demo.GameLogic.Componnets
             public float mageArmor;
         }
 
-        float m_CurrentHp = 0;
-        float m_CurrentMana = 0;
-        PropertyLevel1 m_StaticPropertyLevel1;
-        PropertyLevel2 m_StaticPropertyLevel2;
-        PropertyLevel1 m_DynamicPropertyLevel1;
-        PropertyLevel2 m_DynamicPropertyLevel2;
+        private float m_CurrentHp = 0;
+        private float m_CurrentMana = 0;
+        private float m_RecoveryHp = 0;
+        private float m_RecoveryMana = 0;
+        private PropertyLevel1 m_StaticPropertyLevel1;
+        private PropertyLevel2 m_StaticPropertyLevel2;
+        private PropertyLevel1 m_DynamicPropertyLevel1;
+        private PropertyLevel2 m_DynamicPropertyLevel2;
 
         public Property(Entity entity) : base(entity)
         {
@@ -63,6 +67,18 @@ namespace Demo.GameLogic.Componnets
             {
                 m_DynamicPropertyLevel2.hp = value - m_StaticPropertyLevel2.hp;
             }
+        }
+
+        public float recoveryHp
+        {
+            get { return m_RecoveryHp; }
+            set { m_RecoveryHp = value; }
+        }
+
+        public float recoveryMana
+        {
+            get { return m_RecoveryMana; }
+            set { m_RecoveryMana = value; }
         }
 
         public float mana
@@ -105,6 +121,17 @@ namespace Demo.GameLogic.Componnets
             }
         }
 
+        public int magicImmuneBuffCount
+        {
+            get; set;
+        }
+        public bool isMagicImmune
+        {
+            get
+            {
+                return magicImmuneBuffCount == 0;
+            }
+        }
 
         public delegate void PropertyChangedDelegate();
     }

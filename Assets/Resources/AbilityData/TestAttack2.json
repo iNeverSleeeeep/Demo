@@ -19,7 +19,7 @@
 			"startTime" : 0.5,
 		    "trackingProjectile" : 
             {
-                "target" : { "center" : 1 },
+                "target" : { "target" : 1 },
                 "effectName" : "particles\\units\\heroes\\hero_sven\\sven_spell_storm_bolt.vpcf",
                 "dodgeable" : 0,
                 "providesVision" : 1,
@@ -41,7 +41,7 @@
 					"teams" : 2,
 					"flags" : {},
 					"radius" : 1,
-					"center" : 1
+					"target" : 1
 				},
                 "value" : 10,
                 "type" : 2
@@ -50,7 +50,7 @@
 			"applyModifier" :
 			{
 				"modifierName" : "DamageBuff",
-				"target" : {"center":1}
+				"target" : {"target":1}
 			}
 		}
 	],
@@ -67,8 +67,8 @@
                 {
                     "thinkInterval": 0.5,
                     "damage": {
-                        "target": { "center": 1 },
-                        "value": 10,
+                        "target": { "target": 1 },
+                        "value": 2,
                         "type": 2
                     }
                 }

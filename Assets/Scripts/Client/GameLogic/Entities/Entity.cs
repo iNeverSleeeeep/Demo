@@ -160,6 +160,16 @@ namespace Demo.GameLogic.Entities
                 return m_CachedTracker;
             }
         }
+        Camp m_CachedCamp = null;
+        public Camp camp
+        {
+            get
+            {
+                if (m_CachedCamp == null)
+                    m_CachedCamp = GetComponent<Camp>();
+                return m_CachedCamp;
+            }
+        }
         public void ClearCache()
         {
             m_CachedPosition = null;
@@ -170,6 +180,8 @@ namespace Demo.GameLogic.Entities
             m_CachedProperty = null;
             m_CachedModifier = null;
             m_CachedClickable = null;
+            m_CachedTracker = null;
+            m_CachedCamp = null;
         }
         #endregion
 
