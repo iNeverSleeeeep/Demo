@@ -55,7 +55,7 @@ namespace Demo.GameLogic.Abilities
     class AttackSpeed
     {
         public EventTarget target;
-        public float value;
+        public int value;
     }
 
     // 魔法免疫
@@ -63,7 +63,7 @@ namespace Demo.GameLogic.Abilities
     class MagicImmune
     {
         public EventTarget target;
-        public float value;
+        public int value;
     }
 
     // 位移

@@ -525,6 +525,7 @@
     <Compile Include="Assets\Scripts\Client\Resource\ResourceLoader.cs" />
     <Compile Include="Assets\Scripts\Client\UI\BasePanel.cs" />
     <Compile Include="Assets\Scripts\Client\UI\CastSkillPanel.cs" />
+    <Compile Include="Assets\Scripts\Client\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Common.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Extention.cs" />
     <Compile Include="Assets\Scripts\Client\Utilities\Random.cs" />

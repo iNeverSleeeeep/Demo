@@ -147,4 +147,45 @@ namespace Demo.GameLogic.Systems
             }
         }
     }
+
+    class ModifierOnAdd : IModifierExecutor
+    {
+        public ModifierOnAdd(List<IAbilityCommand> cmds) : base(cmds)
+        {
+        }
+
+        public override IModifierExecutor Clone()
+        {
+            return new ModifierOnAdd(commands);
+        }
+
+        public override void Execute(ModifierContext context)
+        {
+            ExecuteCommands(context);
+        }
+    }
+
+    class ModifierOnRemove : IModifierExecutor
+    {
+        private ModifierContext m_Context = null;
+        public ModifierOnRemove(List<IAbilityCommand> cmds) : base(cmds)
+        {
+        }
+
+        public override IModifierExecutor Clone()
+        {
+            return new ModifierOnRemove(commands);
+        }
+
+        public override void Execute(ModifierContext context)
+        {
+            m_Context = context;
+        }
+
+        public override void Kill()
+        {
+            ExecuteCommands(m_Context);
+            base.Kill();
+        }
+    }
 }

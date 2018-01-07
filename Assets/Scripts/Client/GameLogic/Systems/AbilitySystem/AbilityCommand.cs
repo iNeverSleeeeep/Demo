@@ -114,6 +114,46 @@ namespace Demo.GameLogic.Systems
             };
         }
     }
+
+    class AttackSpeedCommand : IAbilityCommand
+    {
+        private int m_AttackSpeedValue;
+
+        public AttackSpeedCommand(AttackSpeed attackSpeed)
+        {
+            m_AttackSpeedValue = attackSpeed.value;
+        }
+
+        public void Execute(AbilityCommandContext ctx)
+        {
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            var target = entityManager.GetEntity(ctx.target);
+            if (target != null)
+            {
+                // TODO 20180107 攻速 property
+            }
+        }
+    }
+
+    class MagicImmuneCommand : IAbilityCommand
+    {
+        private int m_MagicImmuneValue;
+
+        public MagicImmuneCommand(MagicImmune magicImmune)
+        {
+            m_MagicImmuneValue = magicImmune.value;
+        }
+
+        public void Execute(AbilityCommandContext ctx)
+        {
+            var entityManager = Game.Instance.gameLogicManager.entityManager;
+            var target = entityManager.GetEntity(ctx.target);
+            if (target != null)
+            {
+                target.property.magicImmuneBuffCount += m_MagicImmuneValue;
+            }
+        }
+    }
 }
 
 

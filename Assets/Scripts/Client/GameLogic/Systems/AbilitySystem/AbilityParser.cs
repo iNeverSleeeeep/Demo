@@ -58,6 +58,14 @@ namespace Demo.GameLogic.Systems
                 foreach (var command in abilityModifier.OnIntervalThink)
                     root.AddModifier(new ModifierThinkInterval(ParseCommands(command), command.thinkInterval));
 
+            if (abilityModifier.OnAdd != null)
+                foreach (var command in abilityModifier.OnAdd)
+                    root.AddModifier(new ModifierOnAdd(ParseCommands(command)));
+
+            if (abilityModifier.OnRemove != null)
+                foreach (var command in abilityModifier.OnRemove)
+                    root.AddModifier(new ModifierOnRemove(ParseCommands(command)));
+
             return root;
         }
 
@@ -70,6 +78,10 @@ namespace Demo.GameLogic.Systems
                 cmds.Add(new DamageCommand(command.damage));
             if (command.trackingProjectile.visionRadius != 0 && command.trackingProjectile.moveSpeed != 0)
                 cmds.Add(new TrackingProjectileCommand(command.trackingProjectile));
+            if (command.attackSpeed.value != 0)
+                cmds.Add(new AttackSpeedCommand(command.attackSpeed));
+            if (command.magicImmune.value != 0)
+                cmds.Add(new MagicImmuneCommand(command.magicImmune));
 
             return cmds;
         }

@@ -56,7 +56,6 @@ namespace Demo.GameLogic.Componnets
                     m_CurrentHp = maxHp;
             }
         }
-
         public float maxHp
         {
             get
@@ -68,7 +67,6 @@ namespace Demo.GameLogic.Componnets
                 m_DynamicPropertyLevel2.hp = value - m_StaticPropertyLevel2.hp;
             }
         }
-
         public float recoveryHp
         {
             get { return m_RecoveryHp; }
@@ -80,7 +78,6 @@ namespace Demo.GameLogic.Componnets
             get { return m_RecoveryMana; }
             set { m_RecoveryMana = value; }
         }
-
         public float mana
         {
             get
@@ -96,7 +93,6 @@ namespace Demo.GameLogic.Componnets
                     m_CurrentMana = maxMana;
             }
         }
-
         public float maxMana
         {
             get
@@ -118,6 +114,17 @@ namespace Demo.GameLogic.Componnets
             set
             {
                 m_DynamicPropertyLevel2.attack = value - m_StaticPropertyLevel2.attack;
+            }
+        }
+        public float attackSpeed
+        {
+            get
+            {
+                return m_StaticPropertyLevel2.attackSpeed + m_DynamicPropertyLevel2.attackSpeed;
+            }
+            set
+            {
+                m_DynamicPropertyLevel2.attackSpeed = value - m_StaticPropertyLevel2.attackSpeed;
             }
         }
 
