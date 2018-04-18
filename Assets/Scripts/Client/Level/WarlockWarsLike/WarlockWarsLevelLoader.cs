@@ -25,7 +25,7 @@ namespace Demo.Level
             entity.collider.selfLayer = (int)GameLogic.Componnets.Collider.Layer.Hero;
             Game.Instance.cameraManager.target = entity.model.transform;
             entity.model.name = "player";
-            entity.model.material.color = Color.blue;
+            // entity.model.material.color = Color.blue;
             entity.ability.attack = "TestAttack2";
             entity.clickable.clickCallback = Game.Instance.inputManager.inputHandler.OnEntityClick;
 

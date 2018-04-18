@@ -100,7 +100,7 @@ namespace Demo.GameLogic.Systems
             tp.active = true;
             tp.model.name = "tp caster:" + caster.ToString() + " target:" + target.ToString();
             tp.model.position = caster.position.position;
-            tp.model.material.color = UnityEngine.Color.red;
+            // tp.model.material.color = UnityEngine.Color.red;
             tp.camp.type = caster.camp.type;
 
             tp.collider.onCollide = (projectile, other) =>

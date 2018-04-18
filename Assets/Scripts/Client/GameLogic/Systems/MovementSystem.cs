@@ -21,7 +21,22 @@ namespace Demo.GameLogic.Systems
                     // TODO 20180107 移动的逻辑和表现要分开，不然会显得卡
                     var model = entity.model;
                     if (model != null)
+                    {
                         model.position = nextPosition;
+                        model.rotation = quaternion;
+
+                        if (model.animator)
+                            model.animator.SetBool("IsWalking", true);
+                    }
+                }
+                else if (entity.movement != null && entity.movement.speed == 0)
+                {
+                    var model = entity.model;
+                    if (model != null)
+                    {
+                        if (model.animator)
+                            model.animator.SetBool("IsWalking", false);
+                    }
                 }
             }
         }
